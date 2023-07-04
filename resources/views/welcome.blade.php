@@ -1,25 +1,13 @@
 @include('components.home.css')
 @include('components.home.navbar')
 
-<section class="pxp-page-header-simple" style="background-color: var(--pxpSecondaryColor);">
-    <div class="pxp-container">
-        <h1>Search Companies</h1>
-        <div class="pxp-hero-subtitle pxp-text-light">Work for the best companies in the world</div>
-        <div class="pxp-hero-form pxp-hero-form-round pxp-large mt-3 mt-lg-4">
+<section class="pxp-page-header-simple" style="background-color: var(--pxpMainColor);">
+    <div class="pxp-container mt-4">
+        <h1 class="text-white">Search Companies</h1>
+        <div class="pxp-hero-subtitle pxp-text-light text-white mt-3">Work for the best companies in the world</div>
+        <div class="pxp-hero-form pxp-hero-form-round pxp-large mt-3 mt-lg-5">
             <form class="row gx-3 align-items-center">
                 <div class="col-12 col-lg">
-                    <div class="input-group mb-3 mb-lg-0">
-                        <span class="input-group-text"><span class="fa fa-search"></span></span>
-                        <input type="text" class="form-control" placeholder="Company Name or Keyword">
-                    </div>
-                </div>
-                <div class="col-12 col-lg pxp-has-left-border">
-                    <div class="input-group mb-3 mb-lg-0">
-                        <span class="input-group-text"><span class="fa fa-globe"></span></span>
-                        <input type="text" class="form-control" placeholder="Location">
-                    </div>
-                </div>
-                <div class="col-12 col-lg pxp-has-left-border">
                     <div class="input-group mb-3 mb-lg-0">
                         <span class="input-group-text"><span class="fa fa-folder-o"></span></span>
                         <select class="form-select">
