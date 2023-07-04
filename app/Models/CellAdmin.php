@@ -3,9 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class CellAdmin extends Model
+class CellAdmin extends Authenticatable
 {
     use HasFactory;
+    protected $guarded = [];
+
+    public function cell()
+    {
+        return $this->belongsTo(Cell::class);
+    }
 }
