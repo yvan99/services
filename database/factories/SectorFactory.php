@@ -2,19 +2,17 @@
 
 namespace Database\Factories;
 
+use App\Models\Sector;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SectorFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
+    protected $model = Sector::class;
+
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->company,
         ];
     }
 }

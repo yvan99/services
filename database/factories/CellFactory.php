@@ -2,19 +2,18 @@
 
 namespace Database\Factories;
 
+use App\Models\Sector;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CellFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
+    protected $model = Cell::class;
+
     public function definition()
     {
         return [
-            //
+            'sector_id' => Sector::factory(),
+            'name' => $this->faker->city,
         ];
     }
 }
