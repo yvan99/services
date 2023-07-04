@@ -15,7 +15,14 @@ class CreateCellAdminsTable extends Migration
     {
         Schema::create('cell_admins', function (Blueprint $table) {
             $table->id();
+            $table->string('names');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('telephone');
+            $table->unsignedBigInteger('cell_id');
             $table->timestamps();
+    
+            $table->foreign('cell_id')->references('id')->on('cells');
         });
     }
 
