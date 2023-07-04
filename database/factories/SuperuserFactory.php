@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Superuser;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 
-class SuperuserFactory extends Factory
+class SuperUserFactory extends Factory
 {
     protected $model = Superuser::class;
 
