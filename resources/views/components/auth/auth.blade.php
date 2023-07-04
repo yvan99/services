@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
                 <h5 class="modal-title text-center mt-4" id="signinModal">Login to your account</h5>
-                <form class="mt-4">
+                <form class="mt-4" method="POST" action="{{ route('citizen.login') }}">
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control" id="pxp-signin-email" placeholder="Email address">
                         <label for="pxp-signin-email">Email address</label>
@@ -18,7 +18,7 @@
                         <label for="pxp-signin-password">Password</label>
                         <span class="fa fa-lock"></span>
                     </div>
-                    <a href="#" class="btn rounded-pill pxp-modal-cta">Continue</a>
+                    <button type="submit" class="btn rounded-pill pxp-modal-cta">Continue</button>
                     {{-- <div class="mt-4 text-center pxp-modal-small">
                         <a href="#" class="pxp-modal-link">Forgot password</a>
                     </div> --}}
