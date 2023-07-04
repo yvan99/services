@@ -8,13 +8,14 @@
             <div class="modal-body">
                 <h5 class="modal-title text-center mt-4" id="signinModal">Login to your account</h5>
                 <form class="mt-4" method="POST" action="{{ route('citizen.login') }}">
+                    @csrf
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="pxp-signin-email" placeholder="Email address">
+                        <input type="email" class="form-control" name="email" id="pxp-signin-email" placeholder="Email address">
                         <label for="pxp-signin-email">Email address</label>
                         <span class="fa fa-envelope-o"></span>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="pxp-signin-password" placeholder="Password">
+                        <input type="password" name="password" class="form-control" id="pxp-signin-password" placeholder="Password">
                         <label for="pxp-signin-password">Password</label>
                         <span class="fa fa-lock"></span>
                     </div>

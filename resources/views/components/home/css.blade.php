@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{{ asset('home/css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('home/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('home/css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <title>{{ env('APP_NAME') }}</title>
 </head>
