@@ -36,9 +36,21 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'superuser' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'superusers',
+        ],
+        'citizen' => [
+            'driver' => 'session',
+            'provider' => 'citizens',
+        ],
+        'cell_admin' => [
+            'driver' => 'session',
+            'provider' => 'cell_admins',
+        ],
+        'sector_admin' => [
+            'driver' => 'session',
+            'provider' => 'sector_admins',
         ],
     ],
 
@@ -60,15 +72,22 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'superusers' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Superuser::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'citizens' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Citizen::class,
+        ],
+        'cell_admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\CellAdmin::class,
+        ],
+        'sector_admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\SectorAdmin::class,
+        ],
     ],
 
     /*
