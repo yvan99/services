@@ -15,6 +15,11 @@ class CreateCitizensTable extends Migration
     {
         Schema::create('citizens', function (Blueprint $table) {
             $table->id();
+            $table->string('names');
+            $table->string('email')->unique();
+            $table->string('telephone');
+            $table->string('password');
+            $table->string('national_id');
             $table->timestamps();
         });
     }
