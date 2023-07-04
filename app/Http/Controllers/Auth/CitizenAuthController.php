@@ -58,4 +58,32 @@ class CitizenAuthController extends Controller
             'password' => 'required',
         ]);
     }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::guard('citizen')->attempt($credentials)) {
+            return redirect()->intended($this->redirectTo);
+        }
+
+        return redirect()->back()->withInput($request->only('email'))->withErrors([
+            'email' => 'These credentials do not match our records.',
+        ]);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('citizen')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect($this->redirectToLogout);
+    }
 }
