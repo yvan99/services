@@ -20,15 +20,6 @@ class CitizenAuthController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function showLoginForm()
-    {
-        return view('auth.citizen-login');
-    }
-
-    public function showSignupForm()
-    {
-        return view('auth.citizen-signup');
-    }
 
     public function register(Request $request)
     {
