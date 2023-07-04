@@ -10,4 +10,5 @@ class Citizen extends Authenticatable
 {
     use HasFactory;
     protected $guarded = [];
+    protected $fillable =['names','email','password','national_id','telephone'];
 }

@@ -304,6 +304,15 @@ a:hover {
     transition: var(--pxpHoverTransition);
     transition-property: color, background-color;
 }
+
+.pxp-nav-btn-warning {
+    background-color: var(--pxpYellowColor);
+    color: #444;
+    font-size: 15px;
+    font-weight: 500;
+    transition: var(--pxpHoverTransition);
+    transition-property: color, background-color;
+}
 .pxp-nav-btn:hover {
     color: var(--pxpMainColorDark);
     background-color: #fff;

@@ -36,6 +36,10 @@ return [
     */
 
     'guards' => [
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
         'superuser' => [
             'driver' => 'session',
             'provider' => 'superusers',
@@ -51,7 +55,7 @@ return [
         'sector_admin' => [
             'driver' => 'session',
             'provider' => 'sector_admins',
-        ],
+        ]
     ],
 
     /*
@@ -72,6 +76,10 @@ return [
     */
 
     'providers' => [
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
         'superusers' => [
             'driver' => 'eloquent',
             'model' => App\Models\Superuser::class,
@@ -87,7 +95,12 @@ return [
         'sector_admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\SectorAdmin::class,
-        ],
+        ]
+
+        // 'users' => [
+        //     'driver' => 'database',
+        //     'table' => 'users',
+        // ],
     ],
 
     /*

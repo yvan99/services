@@ -16,9 +16,10 @@
     <link rel="stylesheet" href="{{ asset('home/css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('home/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('home/css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <title>{{ env('APP_NAME') }}</title>
 </head>
 
 <body>
-    <div class="pxp-preloader"><span>Loading...</span></div>
+    {{-- <div class="pxp-preloader"><span>Loading...</span></div> --}}

@@ -21,6 +21,8 @@ Route::prefix('superuser')->group(function () {
 Route::prefix('citizen')->group(function () {
     Route::get('login', [CitizenAuthController::class, 'showLoginForm'])->name('citizen.login');
     Route::post('login', [CitizenAuthController::class, 'login'])->name('citizen.login.submit');
+    Route::post('register', [CitizenAuthController::class, 'register'])->name('citizen.register');
+    Route::get('logout', [CitizenAuthController::class, 'logout']);
 });
 
 // Cell Admin Authentication Routes
