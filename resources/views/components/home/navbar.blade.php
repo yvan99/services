@@ -14,27 +14,35 @@
             </div>
             <nav class="pxp-user-nav pxp-on-light">
 
-                <a data-bs-target="#pxp-signup-modal" data-bs-toggle="modal" data-bs-dismiss="modal"
-                    class="btn rounded-pill pxp-nav-btn">Create Account</a>
+                @if (!Auth::guard('citizen')->check())
+                    <a data-bs-target="#pxp-signup-modal" data-bs-toggle="modal" data-bs-dismiss="modal"
+                        class="btn rounded-pill pxp-nav-btn">Create Account</a>
 
-                &nbsp;
+                    &nbsp;
 
-                <a data-bs-toggle="modal" href="#pxp-signin-modal" role="button"
-                    class="ml-2 btn rounded-pill pxp-nav-btn">Login</a>
+                    <a data-bs-toggle="modal" href="#pxp-signin-modal" role="button"
+                        class="ml-2 btn rounded-pill pxp-nav-btn">Login</a>
+                @endif
 
 
-                <div class="dropdown pxp-user-nav-dropdown">
-                    <a href="/" class="dropdown-toggle" data-bs-toggle="dropdown">
-                        <div class="pxp-user-nav-avatar pxp-cover"
-                            style="background-image: url(home/images/avatar-1.jpg);"></div>
-                        <div class="pxp-user-nav-name d-none d-md-block">Derek Cotner</div>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="candidate-dashboard.html">Dashboard</a></li>
-                        <li><a class="dropdown-item" href="candidate-dashboard-profile.html">Edit profile</a></li>
-                        <li><a class="dropdown-item" href="/">Logout</a></li>
-                    </ul>
-                </div>
+                @auth('citizen')
+                    <div class="dropdown pxp-user-nav-dropdown">
+                        <a href="/" class="dropdown-toggle" data-bs-toggle="dropdown">
+                            <div class="pxp-user-nav-avatar pxp-cover"
+                                style="background-image: url(home/images/avatar-1.jpg);"></div>
+                            <div class="pxp-user-nav-name d-none d-md-block">{{ Auth::guard('citizen')->user()->names }}
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="candidate-dashboard.html">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="candidate-dashboard-profile.html">Edit profile</a></li>
+                            <li><a class="dropdown-item" href="/">Logout</a></li>
+                        </ul>
+                    </div>
+                @endauth
+
+
+
             </nav>
         </div>
     </div>

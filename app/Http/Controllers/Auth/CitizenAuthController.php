@@ -4,16 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Citizen;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CitizenAuthController extends Controller
 {
-    use AuthenticatesUsers;
 
     protected $redirectTo = '/';
-    protected $redirectToLogout = '/citizen/login';
+    protected $redirectToLogout = '/';
 
     public function __construct()
     {
@@ -21,22 +19,32 @@ class CitizenAuthController extends Controller
     }
 
 
+
     public function register(Request $request)
     {
         $request->validate([
             'email' => 'required|email|unique:citizens',
             'password' => 'required',
+            'names' => 'required',
+            'telephone' => 'required',
+            'national_id' => 'required',
         ]);
 
         $citizen = Citizen::create([
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            'names' => $request->names,
+            'telephone' => $request->telephone,
+            'national_id' => $request->national_id,
         ]);
+
+
 
         Auth::guard('citizen')->login($citizen);
 
         return redirect('/')->with('status', 'Registration successful. You are now logged in.');
     }
+
 
     protected function guard()
     {
