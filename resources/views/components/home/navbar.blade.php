@@ -24,7 +24,7 @@
                 <div class="dropdown pxp-user-nav-dropdown">
                     <a href="/" class="dropdown-toggle" data-bs-toggle="dropdown">
                         <div class="pxp-user-nav-avatar pxp-cover"
-                            style="background-image: url(images/avatar-1.jpg);"></div>
+                            style="background-image: url(home/images/avatar-1.jpg);"></div>
                         <div class="pxp-user-nav-name d-none d-md-block">Derek Cotner</div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
