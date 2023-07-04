@@ -6,9 +6,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                {{-- <div class="pxp-user-modal-fig text-center">
-                    <img src="home/images/signin-fig.png" alt="Sign in">
-                </div> --}}
                 <h5 class="modal-title text-center mt-4" id="signinModal">Login to your account</h5>
                 <form class="mt-4">
                     <div class="form-floating mb-3">
@@ -43,9 +40,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                {{-- <div class="pxp-user-modal-fig text-center">
-                    <img src="home/images/signup-fig.png" alt="Sign up">
-                </div> --}}
                 <h5 class="modal-title text-center mt-4" id="signupModal">Create an account</h5>
                 <form class="mt-4">
                     <div class="form-floating mb-3">

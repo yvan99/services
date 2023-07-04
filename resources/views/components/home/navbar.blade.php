@@ -5,20 +5,22 @@
                 <div class="pxp-logo">
                     <a href="/" class="pxp-animate">
                         {{-- <span style="color: var(--pxpMainColor)">j</span> --}}
-                        {{env("APP_NAME")}}</a>
+                        {{ env('APP_NAME') }}</a>
                 </div>
 
                 <nav class="pxp-nav dropdown-hover-all d-none d-xl-block">
-                    
+
                 </nav>
             </div>
             <nav class="pxp-user-nav pxp-on-light">
 
-                <a href="company-dashboard-new-job.html" class="btn rounded-pill pxp-nav-btn">Create Account</a>
+                <a data-bs-target="#pxp-signup-modal" data-bs-toggle="modal" data-bs-dismiss="modal"
+                    class="btn rounded-pill pxp-nav-btn">Create Account</a>
 
                 &nbsp;
 
-                <a data-bs-toggle="modal" href="#pxp-signin-modal" role="button" class="ml-2 btn rounded-pill pxp-nav-btn">Login</a>
+                <a data-bs-toggle="modal" href="#pxp-signin-modal" role="button"
+                    class="ml-2 btn rounded-pill pxp-nav-btn">Login</a>
 
 
                 <div class="dropdown pxp-user-nav-dropdown">
