@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\CellAdminAuthController;
+use App\Http\Controllers\Auth\CitizenAuthController;
+use App\Http\Controllers\Auth\SectorAdminAuthController;
+use App\Http\Controllers\Auth\SuperuserAuthController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
