@@ -9,7 +9,9 @@
             <form class="row gx-3 align-items-center">
                 <div class="col-12 col-lg">
                     <div class="input-group mb-3 mb-lg-0">
-                        <span class="input-group-text"><span class="fa fa-folder-o"></span></span>
+                        <span class="input-group-text">
+                            <span class="fa fa-folder-o" style="font-size: 30px"></span>
+                        </span>
                         <select class="form-select">
                             <option selected>All Industries</option>
                             <option>Business Development</option>
