@@ -1059,3 +1059,4 @@
         </div>
     </div>
 </div>
+@include('components.home.js')
