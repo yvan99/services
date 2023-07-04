@@ -1,12 +1,5 @@
 @include('components.home.css')
 @include('components.home.navbar')
-<script>
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            toastr.error('{{ $error }}');
-        @endforeach
-    @endif
-</script>
 
 <section class="pxp-page-header-simple" style="background-color: var(--pxpMainColor);">
     <div class="pxp-container mt-4">

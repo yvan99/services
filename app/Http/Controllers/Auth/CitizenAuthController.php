@@ -69,7 +69,7 @@ class CitizenAuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::guard('citizen')->attempt($credentials)) {
-            return redirect()->intended($this->redirectTo);
+            return redirect()->intended($this->redirectTo)->with('status', 'You are now logged in.');
         }
 
         return redirect()->back()->withInput($request->only('email'))->withErrors([
@@ -84,6 +84,6 @@ class CitizenAuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect($this->redirectToLogout);
+        return redirect($this->redirectToLogout)->with('status', 'You are logged out');
     }
 }
