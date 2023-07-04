@@ -9,8 +9,9 @@ class CategoryController extends Controller
 {
     public function index()
     {
+        $totalCategories = Category::count();
         $categories = Category::withCount('services')->get();
 
-        return view('welcome', compact('categories'));
+        return view('welcome', compact('totalCategories', 'categories'));
     }
 }

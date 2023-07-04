@@ -37,7 +37,7 @@
         <div class="pxp-companies-list-top">
             <div class="row justify-content-between align-items-center">
                 <div class="col-auto">
-                    <h2><span class="pxp-text-light">Showing</span> 8,536 <span class="pxp-text-light">service
+                    <h2><span class="pxp-text-light">Showing</span> {{$totalCategories}} <span class="pxp-text-light">service
                             categories</span></h2>
                 </div>
                 {{-- <div class="col-auto">
