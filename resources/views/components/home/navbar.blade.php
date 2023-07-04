@@ -21,7 +21,7 @@
                     &nbsp;
 
                     <a data-bs-toggle="modal" href="#pxp-signin-modal" role="button"
-                        class="ml-2 btn rounded-pill pxp-nav-btn">Login</a>
+                        class="ml-2 btn rounded-pill pxp-nav-btn-warning">Login Account</a>
                 @endif
 
 
@@ -29,13 +29,12 @@
                     <div class="dropdown pxp-user-nav-dropdown">
                         <a href="/" class="dropdown-toggle" data-bs-toggle="dropdown">
                             <div class="pxp-user-nav-avatar pxp-cover"
-                                style="background-image: url(home/images/avatar-1.jpg);"></div>
+                                style="background-image: url(home/images/user.png);"></div>
                             <div class="pxp-user-nav-name d-none d-md-block">{{ Auth::guard('citizen')->user()->names }}
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="candidate-dashboard.html">Dashboard</a></li>
-                            <li><a class="dropdown-item" href="candidate-dashboard-profile.html">Edit profile</a></li>
                             <li><a class="dropdown-item" href="/citizen/logout">Logout</a></li>
                         </ul>
                     </div>
