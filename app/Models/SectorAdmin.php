@@ -3,9 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class SectorAdmin extends Model
+class SectorAdmin extends Authenticatable
 {
     use HasFactory;
+    protected $guarded = [];
+
+    public function sector()
+    {
+        return $this->belongsTo(Sector::class);
+    }
 }
