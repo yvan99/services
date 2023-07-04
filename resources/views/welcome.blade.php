@@ -51,21 +51,24 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6 col-xl-4 col-xxl-3 pxp-companies-card-1-container">
-                <div class="pxp-companies-card-1 pxp-has-border">
-                    <div class="pxp-companies-card-1-top">
-                        <a href="single-company-1.html" class="pxp-companies-card-1-company-name">Artistre
-                            Studio</a>
-                        <div class="pxp-companies-card-1-company-description pxp-text-light">Is an American
-                            multinational computer software company. Incorporated in Delaware and headquartered in
-                            San Jose, California, it has historically specialized in software for the creation.
+            @foreach ($categories as $category)
+                <div class="col-md-6 col-xl-4 col-xxl-3 pxp-companies-card-1-container">
+                    <div class="pxp-companies-card-1 pxp-has-border">
+                        <div class="pxp-companies-card-1-top">
+                            <a href="single-company-1.html"
+                                class="pxp-companies-card-1-company-name">{{ $category->name }}</a>
+                            <div class="pxp-companies-card-1-company-description pxp-text-light">
+                                {{ $category->description }}
+                            </div>
+                        </div>
+                        <div class="pxp-companies-card-1-bottom">
+                            <a href="jobs-list-1.html"
+                                class="pxp-companies-card-1-company-jobs">{{ $category->services_count }} Services</a>
                         </div>
                     </div>
-                    <div class="pxp-companies-card-1-bottom">
-                        <a href="jobs-list-1.html" class="pxp-companies-card-1-company-jobs">10 jobs</a>
-                    </div>
                 </div>
-            </div>
+            @endforeach
+
 
         </div>
 
