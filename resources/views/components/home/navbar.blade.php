@@ -18,7 +18,7 @@
 
                 &nbsp;
 
-                <a href="company-dashboard-new-job.html" class="ml-2 btn rounded-pill pxp-nav-btn">Login</a>
+                <a data-bs-toggle="modal" href="#pxp-signin-modal" role="button" class="ml-2 btn rounded-pill pxp-nav-btn">Login</a>
 
 
                 <div class="dropdown pxp-user-nav-dropdown">
@@ -37,3 +37,5 @@
         </div>
     </div>
 </header>
+
+@include('components.auth.auth')
