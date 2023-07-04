@@ -15,6 +15,9 @@ class CreateSuperusersTable extends Migration
     {
         Schema::create('superusers', function (Blueprint $table) {
             $table->id();
+            $table->string('names');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->timestamps();
         });
     }
