@@ -72,6 +72,7 @@
                         </select>
                     </div>
                     <div class="form-group mt-4">
+                        <div class="loading-indicator" style="display: none;">Loading...</div>
                         <select name="cell_id" class="form-control form-select" required>
 
                         </select>
@@ -142,4 +143,35 @@
             }
         });
     });
+</script>
+
+<script>
+   $(document).ready(function() {
+    $('.category-button').click(function() {
+        var categoryId = $(this).data('category-id');
+        $('#serviceList').empty(); // Clear previous service list
+        $('.loading-indicator').show(); // Show loading indicator
+
+        $.ajax({
+            url: '/services/' + categoryId,
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                $('.loading-indicator').hide(); // Hide loading indicator
+                // Populate the select input with the fetched services
+                var selectInput = $('#serviceSelect');
+                selectInput.empty(); // Clear previous options
+                response.forEach(function(service) {
+                    var option = '<option value="' + service.id + '">' + service.name + '</option>';
+                    selectInput.append(option);
+                });
+            },
+            error: function(error) {
+                $('.loading-indicator').hide(); // Hide loading indicator
+                console.error(error);
+            }
+        });
+    });
+});
+
 </script>
