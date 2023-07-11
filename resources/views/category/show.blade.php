@@ -64,6 +64,7 @@
                     <input type="hidden" name="service_id" id="serviceIdInput">
 
                     <div class="form-group mt-4">
+                        <label >Choose Sector</label>
                         <select name="sector_id" id="sectorSelect" class="form-control form-select" required>
 
                             @foreach ($sectors as $sector)
@@ -72,7 +73,8 @@
                         </select>
                     </div>
                     <div class="form-group mt-4">
-                        <div class="loading-indicator" style="display: none;">Loading...</div>
+                        <label >Choose Cell</label>
+                       
                         <select name="cell_id" id="cellSelect" class="form-control form-select" required>
 
                         </select>
@@ -81,10 +83,12 @@
                         <input type="date" name="preferred_date" class="form-control" required>
                     </div>
                     <div class="form-group mt-4">
+                        <label >Preffered time</label>
                         <input type="time" name="preferred_hour" class="form-control" required>
                     </div>
 
                     <div class="form-group mt-4">
+                        <label >Description</label>
                         <textarea name="description" class="form-control" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn btn-success mt-4">Confirm Submission</button>
@@ -95,6 +99,7 @@
                     @csrf
                     <input type="hidden" name="service_id" id="serviceIdInput">
                     <div class="form-group mt-3">
+                        <label >Choose Sector</label>
                         <select name="sector_id" class="form-control form-select" required>
 
                             @foreach ($sectors as $sector)
@@ -103,12 +108,15 @@
                         </select>
                     </div>
                     <div class="form-group mt-3">
+                        <label >Preffered Date</label>
                         <input type="date" name="preferred_date" class="form-control" required>
                     </div>
                     <div class="form-group mt-3">
+                        <label>Preffered Time</label>
                         <input type="time" name="preferred_hour" class="form-control" required>
                     </div>
                     <div class="form-group mt-3">
+                        <label >Description</label>
                         <textarea name="description" class="form-control" rows="3"></textarea>
                     </div>
 
