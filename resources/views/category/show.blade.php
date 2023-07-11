@@ -27,7 +27,7 @@
                             <div class="pxp-jobs-card-2-category-label">Project Management</div>
                         </a>
                         <div class="pxp-jobs-card-2-bottom-right">
-                         <a href="single-company-1.html" class="pxp-jobs-card-2-company btn btn-primary text-white">Request Service</a>
+                            <a href="#" class="pxp-jobs-card-2-company btn btn-primary text-white" data-bs-toggle="modal" data-bs-target="#requestServiceModal" data-service-id="{{ $service->id }}">Request Service</a>
                         </div>
                     </div> 
                 </div>
