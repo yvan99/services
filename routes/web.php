@@ -15,6 +15,8 @@ Route::get('/', [CategoryController::class, 'index']);
 Route::get('categories/{category}', [CategoryController::class, 'showServices'])->name('categories.show');
 Route::post('/cell/requests', [CellRequestController::class, 'store'])->name('cell.requests.store');
 Route::post('/sector/requests', [SectorRequestController::class, 'store'])->name('sector.requests.store');
+Route::get('/services/{categoryId}', [CategoryController::class,'getServicesByCategory']);
+
 
 
 // Superuser Authentication Routes

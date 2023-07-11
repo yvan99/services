@@ -16,6 +16,13 @@ class CategoryController extends Controller
         return view('welcome', compact('totalCategories', 'categories'));
     }
 
+    public function getServicesByCategory($categoryId)
+{
+    $services = Service::where('category_id', $categoryId)->get();
+    return response()->json($services);
+}
+
+
     public function showServices(Category $category)
     {
         $category->load('services');
