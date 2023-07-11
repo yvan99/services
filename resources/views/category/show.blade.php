@@ -63,23 +63,30 @@
 
                     <input type="hidden" name="service_id" id="serviceIdInput">
 
-                    <select name="sector_id" class="form-control" required>
+                    <div class="form-group mt-4">
+                        <select name="sector_id" class="form-control form-select" required>
 
-                        @foreach ($sectors as $sector)
-                            <option value="{{ $sector->id }}">{{ $sector->name }}</option>
-                        @endforeach
-                    </select>
+                            @foreach ($sectors as $sector)
+                                <option value="{{ $sector->id }}">{{ $sector->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group mt-4">
+                        <select name="cell_id" class="form-control form-select" required>
 
-                    <select name="cell_id" class="form-control" required>
+                        </select>
+                    </div>
+                    <div class="form-group mt-4">
+                        <input type="date" name="preferred_date" class="form-control" required>
+                    </div>
+                    <div class="form-group mt-4">
+                        <input type="time" name="preferred_hour" class="form-control" required>
+                    </div>
 
-                    </select>
-
-                    <input type="date" name="preferred_date" class="form-control" required>
-
-                    <input type="time" name="preferred_hour" class="form-control" required>
-
-                    <textarea name="description" class="form-control" rows="3"></textarea>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="form-group mt-4">
+                        <textarea name="description" class="form-control" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success mt-4">Confirm Submission</button>
                 </form>
 
                 <form action="{{ route('sector.requests.store') }}" method="POST" id="sectorServiceForm"
@@ -87,7 +94,7 @@
                     @csrf
                     <input type="hidden" name="service_id" id="serviceIdInput">
                     <div class="form-group mt-3">
-                        <select name="sector_id" class="form-control" required>
+                        <select name="sector_id" class="form-control form-select" required>
 
                             @foreach ($sectors as $sector)
                                 <option value="{{ $sector->id }}">{{ $sector->name }}</option>
@@ -104,7 +111,7 @@
                         <textarea name="description" class="form-control" rows="3"></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                    <button type="submit" class="btn btn-success mt-4">Confirm Submission</button>
                 </form>
 
             </div>
