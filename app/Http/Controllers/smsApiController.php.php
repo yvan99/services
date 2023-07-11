@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use GuzzleHttp\Client;
 
-use Illuminate\Http\Request;
-
-class smsApiController extends Controller
+class SmsApiController extends Controller
 {
-    //
     public function sendSms($receiver, $message)
     {
         $data = array(
@@ -15,27 +13,30 @@ class smsApiController extends Controller
             "message"    => $message,
         );
 
-        $url      = env("INTOUCH_API");
-        $data     = http_build_query($data);
+        $url = env("INTOUCH_API");
         $username = env("INTOUCH_USERNAME");
         $password = env("INTOUCH_PASSWORD");
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        $result = curl_exec($ch);
-        $httpResponse = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-        if ($httpResponse != 200) {
-            # code...
-            return $httpResponse . 'SMS system error ,SMS not send';
-            exit;
-        } else {
-            error_log($result);
-            return $result;
+        
+        $client = new Client();
+        
+        try {
+            $response = $client->post($url, [
+                'auth' => [$username, $password],
+                'form_params' => $data,
+                'verify' => false // Only use this if you want to disable SSL verification
+            ]);
+            
+            $httpResponse = $response->getStatusCode();
+            $result = $response->getBody()->getContents();
+            
+            if ($httpResponse != 200) {
+                return $httpResponse . ' SMS system error, SMS not sent';
+            } else {
+                error_log($result);
+                return $result;
+            }
+        } catch (\Exception $e) {
+            return $e->getMessage();
         }
     }
 }
