@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Cell;
 use App\Models\Sector;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {

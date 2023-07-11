@@ -16,7 +16,7 @@ class ServiceFactory extends Factory
             'category_id' => Category::factory(),
             'name' => $this->faker->word,
             'description' => $this->faker->sentence,
-            'level' => $this->faker->randomElement([1, 2, 3]),
+            'level' => $this->faker->randomElement(['cell','sector']),
         ];
     }
 }

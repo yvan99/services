@@ -31,7 +31,7 @@
                             <div class="pxp-jobs-card-2-bottom-right">
                                 <a href="#" class="pxp-jobs-card-2-company btn btn-primary text-white"
                                     data-bs-toggle="modal" data-bs-target="#requestServiceModal"
-                                    data-service-id="{{ $service->id }}">Request Service {{ $service->id }}</a>
+                                    data-service-id="{{ $service->id }}">Request Service</a>
                             </div>
                         </div>
                     </div>
