@@ -53,10 +53,13 @@
             </div>
             <div class="modal-body">
                 <h5 class="modal-title" id="requestServiceModal">Request Service</h5>
+               
                 @if ($service->type === 'cell')
 
                     <form action="{{ route('cell.requests.store') }}" method="POST">
                         @csrf
+
+                        <input type="hidden" name="service_id" id="serviceIdInput">
 
                         <select name="sector_id" class="form-control" required>
 
@@ -79,7 +82,7 @@
                 @else
                     <form action="{{ route('sector.requests.store') }}" method="POST">
                         @csrf
-
+                        <input type="hidden" name="service_id" id="serviceIdInput">
                         <div class="form-group mt-3">
                             <select name="sector_id" class="form-control" required>
 
@@ -109,3 +112,15 @@
 
 @include('components.home.footer')
 @include('components.home.js')
+<script>
+    $(document).ready(function() {
+        $('.pxp-jobs-card-2-company').click(function(event) {
+            event.preventDefault();
+
+            var serviceId = $(this).data('service-id');
+            $('#serviceIdInput').val(serviceId);
+
+            $('#requestServiceModal').modal('show');
+        });
+    });
+</script>
