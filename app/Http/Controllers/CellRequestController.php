@@ -42,24 +42,34 @@ class CellRequestController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $loggedInCitizenId = Auth::id(); // Get the logged-in citizen's ID
 
-        $validatedData = $request->validate([
-            'sector_id' => 'required',
-            'cell_id' => 'required',
-            'preferred_date' => 'required|date',
-            'preferred_hour' => 'required',
-            'description' => 'nullable',
-        ]);
 
-        $cellRequest = new CellRequest($validatedData);
-        $cellRequest->citizen_id = $loggedInCitizenId; // Assign the logged-in citizen's ID
-        $cellRequest->save();
+     public function store(Request $request)
+     {
+         $loggedInCitizenId = Auth::guard('citizen')->user()->id;
+         
+         $validatedData = $request->validate([
+             'service_id' => 'required', 
+             'sector_id' => 'required',
+             'cell_id' => 'required',
+             'preferred_date' => 'required|date',
+             'preferred_hour' => 'required',
+             'description' => 'nullable',
+         ]);
+     
+         $sectorRequest = new CellRequest($validatedData);
+         $sectorRequest->citizen_id = $loggedInCitizenId;
+         $sectorRequest->save();
 
-        // Redirect or return a response as needed
-    }
+         $useSmsApi = new SmsController();
+
+         $message = 'Hello '. Auth::guard('citizen')->user()->names . ' your service request received successfully . Please wait for confirmation from your local administration about the schedule';
+
+         $useSmsApi->sendSms(Auth::guard('citizen')->user()->telephone,$message);
+
+         return back()->with('status', 'Service Request received successfully');
+     
+     }
 
 
     /**
