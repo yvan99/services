@@ -1,11 +1,15 @@
 @include('components.home.css')
 @include('components.home.navbar')
+<section class="pxp-page-header-simple" style="background-color: var(--pxpMainColor);max-height:240px !important">
+    <div class="pxp-container mt-4">
+        <h1 class="text-white">{{ $category->name }}</h1>
+        <div class="pxp-hero-subtitle pxp-text-light text-white mt-3">{{ $category->description }}</div>
 
-<section class="mt-100">
+    </div>
+</section>
+
+<section class="mt-3">
     <div class="pxp-container">
-        <h2 class="pxp-subsection-h2 text-capitalize">{{ $category->name }}</h2>
-        <p class="pxp-text-light">{{ $category->description }}</p>
-
         <div class="row mt-3 mt-md-4 pxp-animate-in pxp-animate-in-top pxp-in">
             @foreach ($services as $service)
                 <div class="col-xl-6 pxp-jobs-card-2-container">
@@ -16,12 +20,12 @@
                             <div class="pxp-jobs-card-2-info">
                                 <a href="single-job-1.html"
                                     class="pxp-jobs-card-2-title text-capitalize">{{ $service->name }}</a>
-                                {{-- <div class="pxp-jobs-card-2-details">
-                                    <a href="jobs-list-1.html" class="pxp-jobs-card-2-location">
+                             <div class="pxp-jobs-card-2-details">
+                                    {{-- <a href="jobs-list-1.html" class="pxp-jobs-card-2-location">
                                         <span class="fa fa-globe"></span>Los Angeles, CA
-                                    </a>
-                                    <div class="pxp-jobs-card-2-type">Full-time</div>
-                                </div> --}}
+                                    </a> --}}
+                                    <div class="pxp-jobs-card-2-type">{{$service->description}}</div>
+                                </div> 
                             </div>
                         </div>
                         <div class="pxp-jobs-card-2-bottom">
