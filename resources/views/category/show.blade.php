@@ -31,7 +31,8 @@
                             <div class="pxp-jobs-card-2-bottom-right">
                                 <a href="#" class="pxp-jobs-card-2-company btn btn-primary text-white"
                                     data-bs-toggle="modal" data-bs-target="#requestServiceModal"
-                                    data-service-id="{{ $service->id }}">Request Service</a>
+                                    data-service-id="{{ $service->id }}"
+                                    data-service-type="{{ $service->level }}">Request Service {{ $service->level }}</a>
                             </div>
                         </div>
                     </div>
@@ -53,57 +54,59 @@
             </div>
             <div class="modal-body">
                 <h5 class="modal-title" id="requestServiceModal">Request Service</h5>
-               
-                @if ($service->type === 'cell')
+                <input type="hidden" id="serviceTypeInput">
 
-                    <form action="{{ route('cell.requests.store') }}" method="POST">
-                        @csrf
 
-                        <input type="hidden" name="service_id" id="serviceIdInput">
+                <form action="{{ route('cell.requests.store') }}" method="POST" id="cellServiceForm"
+                    style="display: none;">
+                    @csrf
 
+                    <input type="hidden" name="service_id" id="serviceIdInput">
+
+                    <select name="sector_id" class="form-control" required>
+
+                        @foreach ($sectors as $sector)
+                            <option value="{{ $sector->id }}">{{ $sector->name }}</option>
+                        @endforeach
+                    </select>
+
+                    <select name="cell_id" class="form-control" required>
+
+                    </select>
+
+                    <input type="date" name="preferred_date" class="form-control" required>
+
+                    <input type="time" name="preferred_hour" class="form-control" required>
+
+                    <textarea name="description" class="form-control" rows="3"></textarea>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+                <form action="{{ route('sector.requests.store') }}" method="POST" id="sectorServiceForm"
+                    style="display: none;">
+                    @csrf
+                    <input type="hidden" name="service_id" id="serviceIdInput">
+                    <div class="form-group mt-3">
                         <select name="sector_id" class="form-control" required>
 
                             @foreach ($sectors as $sector)
                                 <option value="{{ $sector->id }}">{{ $sector->name }}</option>
                             @endforeach
                         </select>
-
-                        <select name="cell_id" class="form-control" required>
-
-                        </select>
-
+                    </div>
+                    <div class="form-group mt-3">
                         <input type="date" name="preferred_date" class="form-control" required>
-
+                    </div>
+                    <div class="form-group mt-3">
                         <input type="time" name="preferred_hour" class="form-control" required>
-
+                    </div>
+                    <div class="form-group mt-3">
                         <textarea name="description" class="form-control" rows="3"></textarea>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                @else
-                    <form action="{{ route('sector.requests.store') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="service_id" id="serviceIdInput">
-                        <div class="form-group mt-3">
-                            <select name="sector_id" class="form-control" required>
+                    </div>
 
-                                @foreach ($sectors as $sector)
-                                    <option value="{{ $sector->id }}">{{ $sector->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group mt-3">
-                            <input type="date" name="preferred_date" class="form-control" required>
-                        </div>
-                        <div class="form-group mt-3">
-                            <input type="time" name="preferred_hour" class="form-control" required>
-                        </div>
-                        <div class="form-group mt-3">
-                            <textarea name="description" class="form-control" rows="3"></textarea>
-                        </div>
+                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                </form>
 
-                        <button type="submit" class="btn btn-primary mt-4">Submit</button>
-                    </form>
-                @endif
             </div>
         </div>
     </div>
@@ -116,11 +119,20 @@
     $(document).ready(function() {
         $('.pxp-jobs-card-2-company').click(function(event) {
             event.preventDefault();
-
             var serviceId = $(this).data('service-id');
+            var serviceType = $(this).data('service-type');
+            console.log(serviceType)
             $('#serviceIdInput').val(serviceId);
+            $('#serviceTypeInput').val(serviceType);
 
             $('#requestServiceModal').modal('show');
+            if (serviceType === 'cell') {
+                $('#cellServiceForm').show();
+                $('#sectorServiceForm').hide();
+            } else {
+                $('#cellServiceForm').hide();
+                $('#sectorServiceForm').show();
+            }
         });
     });
 </script>
