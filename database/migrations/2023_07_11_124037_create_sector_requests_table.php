@@ -15,9 +15,16 @@ class CreateSectorRequestsTable extends Migration
     {
         Schema::create('sector_requests', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('citizen_id')->constrained('citizens');
+            $table->foreignId('service_id')->constrained('services');
+            $table->foreignId('sector_id')->constrained('sectors');
+            $table->date('preferred_date');
+            $table->time('preferred_hour');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
