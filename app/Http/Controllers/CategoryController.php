@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Cell;
 use App\Models\Sector;
+use App\Models\Service;
 
 class CategoryController extends Controller
 {
@@ -17,10 +18,10 @@ class CategoryController extends Controller
     }
 
     public function getServicesByCategory($categoryId)
-{
-    $services = Service::where('category_id', $categoryId)->get();
-    return response()->json($services);
-}
+    {
+        $services = Service::where('category_id', $categoryId)->get();
+        return response()->json($services);
+    }
 
 
     public function showServices(Category $category)
@@ -28,7 +29,7 @@ class CategoryController extends Controller
         $category->load('services');
         $sectors = Sector::all();
         $cells   = Cell::all();
-    
+
         return view('category.show', [
             'category' => $category,
             'services' => $category->services,
@@ -36,5 +37,4 @@ class CategoryController extends Controller
             'cells' => $cells
         ]);
     }
-    
 }
