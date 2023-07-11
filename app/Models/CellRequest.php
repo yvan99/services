@@ -13,6 +13,7 @@ class CellRequest extends Model
         'citizen_id',
         'service_id',
         'cell_id',
+        'code',
         'preferred_date',
         'preferred_hour',
         'description',

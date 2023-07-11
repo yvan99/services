@@ -6,6 +6,7 @@ use App\Models\Cell;
 use App\Models\CellRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CellRequestController extends Controller
 {
@@ -56,14 +57,15 @@ class CellRequestController extends Controller
              'preferred_hour' => 'required',
              'description' => 'nullable',
          ]);
-     
+         $randomString = Str::random(10);
          $sectorRequest = new CellRequest($validatedData);
+         $sectorRequest->code = $randomString;
          $sectorRequest->citizen_id = $loggedInCitizenId;
          $sectorRequest->save();
 
          $useSmsApi = new SmsController();
-
-         $message = 'Hello '. Auth::guard('citizen')->user()->names . ' your service request received successfully . Please wait for confirmation from your local administration about the schedule';
+        
+         $message = 'Hello '. Auth::guard('citizen')->user()->names . ' your service request received successfully with this code'. $randomString .' Please wait for confirmation from your local administration about the schedule';
 
          $useSmsApi->sendSms(Auth::guard('citizen')->user()->telephone,$message);
 
