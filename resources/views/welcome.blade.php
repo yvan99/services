@@ -58,7 +58,7 @@
                 <div class="col-md-6 col-xl-4 col-xxl-3 pxp-companies-card-1-container">
                     <div class="pxp-companies-card-1 pxp-has-border">
                         <div class="pxp-companies-card-1-top">
-                            <a href="single-company-1.html"
+                            <a href="/categories/{{$category->id}}"
                                 class="pxp-companies-card-1-company-name text-capitalize">{{ $category->name }}</a>
                             <div class="pxp-companies-card-1-company-description pxp-text-light">
                                 {{ $category->description }}
