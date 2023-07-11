@@ -65,7 +65,7 @@ class CellRequestController extends Controller
 
          $useSmsApi = new SmsController();
         
-         $message = 'Hello '. Auth::guard('citizen')->user()->names . ' your service request received successfully with this code'. $randomString .' Please wait for confirmation from your local administration about the schedule';
+         $message = 'Hello '. Auth::guard('citizen')->user()->names . ' your service request received successfully with this code  '. $randomString .' Please wait for confirmation from your local administration about the schedule';
 
          $useSmsApi->sendSms(Auth::guard('citizen')->user()->telephone,$message);
 
