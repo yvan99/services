@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 
-class SmsApiController extends Controller
+class SmsController extends Controller
 {
+    
     public function sendSms($receiver, $message)
     {
         $data = array(

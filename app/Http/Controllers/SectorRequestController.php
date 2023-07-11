@@ -52,6 +52,12 @@ class SectorRequestController extends Controller
          $sectorRequest->citizen_id = $loggedInCitizenId;
          $sectorRequest->save();
 
+         $useSmsApi = new SmsController();
+
+         $message = 'Hello '. Auth::guard('citizen')->user()->names . ' your service request received successfully . Please wait for confirmation from your local administration about the schedule';
+
+         $useSmsApi->sendSms(Auth::guard('citizen')->user()->telephone,$message);
+
          return back()->with('status', 'Service Request received successfully');
      
      }
