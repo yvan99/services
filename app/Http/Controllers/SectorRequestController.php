@@ -38,11 +38,10 @@ class SectorRequestController extends Controller
 
      public function store(Request $request)
      {
-        return $request;
-         $loggedInCitizenId = Auth::id(); // Get the logged-in citizen's ID
+         $loggedInCitizenId = Auth::guard('citizen')->user()->id;
          
          $validatedData = $request->validate([
-             'service_id' => 'required', // Include the service_id field
+             'service_id' => 'required', 
              'sector_id' => 'required',
              'preferred_date' => 'required|date',
              'preferred_hour' => 'required',
@@ -50,10 +49,11 @@ class SectorRequestController extends Controller
          ]);
      
          $sectorRequest = new SectorRequest($validatedData);
-         $sectorRequest->citizen_id = $loggedInCitizenId; // Assign the logged-in citizen's ID
+         $sectorRequest->citizen_id = $loggedInCitizenId;
          $sectorRequest->save();
+
+         return back()->with('status', 'Service Request received successfully');
      
-         // Redirect or return a response as needed
      }
 
 
