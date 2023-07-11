@@ -5,12 +5,16 @@ use App\Http\Controllers\Auth\CitizenAuthController;
 use App\Http\Controllers\Auth\SectorAdminAuthController;
 use App\Http\Controllers\Auth\SuperuserAuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CellRequestController;
+use App\Http\Controllers\SectorRequestController;
 use Illuminate\Support\Facades\Route;
 
 
 
 Route::get('/', [CategoryController::class, 'index']);
 Route::get('categories/{category}', [CategoryController::class, 'showServices'])->name('categories.show');
+Route::post('/cell/requests', [CellRequestController::class, 'store'])->name('cell.requests.store');
+Route::post('/sector/requests', [SectorRequestController::class, 'store'])->name('sector.requests.store');
 
 
 // Superuser Authentication Routes

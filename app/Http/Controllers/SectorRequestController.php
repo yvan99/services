@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SectorRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SectorRequestController extends Controller
 {
@@ -32,10 +34,28 @@ class SectorRequestController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+
+
+     public function store(Request $request)
+     {
+        return $request;
+         $loggedInCitizenId = Auth::id(); // Get the logged-in citizen's ID
+         
+         $validatedData = $request->validate([
+             'service_id' => 'required', // Include the service_id field
+             'sector_id' => 'required',
+             'preferred_date' => 'required|date',
+             'preferred_hour' => 'required',
+             'description' => 'nullable',
+         ]);
+     
+         $sectorRequest = new SectorRequest($validatedData);
+         $sectorRequest->citizen_id = $loggedInCitizenId; // Assign the logged-in citizen's ID
+         $sectorRequest->save();
+     
+         // Redirect or return a response as needed
+     }
+
 
     /**
      * Display the specified resource.
