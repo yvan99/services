@@ -27,7 +27,7 @@
                             <div class="pxp-jobs-card-2-category-label">Project Management</div>
                         </a>
                         <div class="pxp-jobs-card-2-bottom-right">
-                            <span class="pxp-jobs-card-2-date pxp-text-light">3 days ago by</span> <a href="single-company-1.html" class="pxp-jobs-card-2-company">Craftgenics</a>
+                         <a href="single-company-1.html" class="pxp-jobs-card-2-company btn btn-primary text-white">Request Service</a>
                         </div>
                     </div>
                 </div>
