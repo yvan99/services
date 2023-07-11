@@ -16,23 +16,35 @@
                             <div class="pxp-jobs-card-2-info">
                                 <a href="single-job-1.html"
                                     class="pxp-jobs-card-2-title text-capitalize">{{ $service->name }}</a>
-                                <div class="pxp-jobs-card-2-details">
+                                {{-- <div class="pxp-jobs-card-2-details">
                                     <a href="jobs-list-1.html" class="pxp-jobs-card-2-location">
                                         <span class="fa fa-globe"></span>Los Angeles, CA
                                     </a>
                                     <div class="pxp-jobs-card-2-type">Full-time</div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="pxp-jobs-card-2-bottom">
                             <a href="jobs-list-1.html" class="pxp-jobs-card-2-category">
-                                <div class="pxp-jobs-card-2-category-label">Project Management</div>
+                                <div class="pxp-jobs-card-2-category-label">
+
+                                    @if ($service->level === 'cell')
+
+                                    <b class="text-success">Cell Level</b>
+                                        
+                                    @else
+                                    <b class="text-warning">Sector Level</b>
+                                        
+                                    @endif
+                                   
+                                
+                                </div>
                             </a>
                             <div class="pxp-jobs-card-2-bottom-right">
                                 <a href="#" class="pxp-jobs-card-2-company btn btn-primary text-white"
                                     data-bs-toggle="modal" data-bs-target="#requestServiceModal"
                                     data-service-id="{{ $service->id }}"
-                                    data-service-type="{{ $service->level }}">Request Service {{ $service->level }}</a>
+                                    data-service-type="{{ $service->level }}">Request Service </a>
                             </div>
                         </div>
                     </div>
