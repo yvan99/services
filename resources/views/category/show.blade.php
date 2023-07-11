@@ -29,7 +29,7 @@
                         <div class="pxp-jobs-card-2-bottom-right">
                          <a href="single-company-1.html" class="pxp-jobs-card-2-company btn btn-primary text-white">Request Service</a>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         @endforeach
