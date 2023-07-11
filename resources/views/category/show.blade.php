@@ -64,7 +64,7 @@
                     <input type="hidden" name="service_id" id="serviceIdInput">
 
                     <div class="form-group mt-4">
-                        <select name="sector_id" class="form-control form-select" required>
+                        <select name="sector_id" id="sectorSelect" class="form-control form-select" required>
 
                             @foreach ($sectors as $sector)
                                 <option value="{{ $sector->id }}">{{ $sector->name }}</option>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="form-group mt-4">
                         <div class="loading-indicator" style="display: none;">Loading...</div>
-                        <select name="cell_id" class="form-control form-select" required>
+                        <select name="cell_id" id="cellSelect" class="form-control form-select" required>
 
                         </select>
                     </div>
@@ -127,9 +127,8 @@
     $(document).ready(function() {
         $('.pxp-jobs-card-2-company').click(function(event) {
             event.preventDefault();
-            var serviceId = $(this).data('service-id');
-            var serviceType = $(this).data('service-type');
-            console.log(serviceType)
+            let serviceId = $(this).data('service-id');
+            let serviceType = $(this).data('service-type');
             $('#serviceIdInput').val(serviceId);
             $('#serviceTypeInput').val(serviceType);
 
@@ -147,31 +146,28 @@
 
 <script>
    $(document).ready(function() {
-    $('.category-button').click(function() {
-        var categoryId = $(this).data('category-id');
-        $('#serviceList').empty(); // Clear previous service list
-        $('.loading-indicator').show(); // Show loading indicator
+    $('#sectorSelect').change(function() {
+        let sectorId = $(this).val();
+        $('#cellSelect').empty(); // Clear previous options
 
         $.ajax({
-            url: '/services/' + categoryId,
+            url: '/cells/' + sectorId,
             type: 'GET',
             dataType: 'json',
             success: function(response) {
-                $('.loading-indicator').hide(); // Hide loading indicator
-                // Populate the select input with the fetched services
-                var selectInput = $('#serviceSelect');
-                selectInput.empty(); // Clear previous options
-                response.forEach(function(service) {
-                    var option = '<option value="' + service.id + '">' + service.name + '</option>';
+                // Populate the select input with the fetched cells
+                let selectInput = $('#cellSelect');
+                response.forEach(function(cell) {
+                    let option = '<option value="' + cell.id + '">' + cell.name + '</option>';
                     selectInput.append(option);
                 });
             },
             error: function(error) {
-                $('.loading-indicator').hide(); // Hide loading indicator
                 console.error(error);
             }
         });
     });
 });
+
 
 </script>

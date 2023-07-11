@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cell;
 use App\Models\CellRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,13 @@ class CellRequestController extends Controller
     public function index()
     {
         //
+    }
+
+    public function getCellsBySector($sectorId)
+    {
+        $cells = Cell::where('sector_id', $sectorId)->get();
+
+        return response()->json($cells);
     }
 
     /**
