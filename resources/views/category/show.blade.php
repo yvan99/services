@@ -148,14 +148,13 @@
    $(document).ready(function() {
     $('#sectorSelect').change(function() {
         let sectorId = $(this).val();
-        $('#cellSelect').empty(); // Clear previous options
+        $('#cellSelect').empty();
 
         $.ajax({
             url: '/cells/' + sectorId,
             type: 'GET',
             dataType: 'json',
             success: function(response) {
-                // Populate the select input with the fetched cells
                 let selectInput = $('#cellSelect');
                 response.forEach(function(cell) {
                     let option = '<option value="' + cell.id + '">' + cell.name + '</option>';
