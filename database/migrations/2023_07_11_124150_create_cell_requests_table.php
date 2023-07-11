@@ -15,6 +15,7 @@ class CreateCellRequestsTable extends Migration
     {
         Schema::create('cell_requests', function (Blueprint $table) {
             $table->id();
+            $table->string('code');
             $table->foreignId('citizen_id')->constrained('citizens');
             $table->foreignId('service_id')->constrained('services');
             $table->foreignId('cell_id')->constrained('cells');

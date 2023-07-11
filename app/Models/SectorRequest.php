@@ -11,6 +11,7 @@ class SectorRequest extends Model
 
     protected $fillable = [
         'citizen_id',
+        'code',
         'service_id',
         'sector_id',
         'preferred_date',

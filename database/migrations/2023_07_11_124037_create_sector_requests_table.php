@@ -15,6 +15,7 @@ class CreateSectorRequestsTable extends Migration
     {
         Schema::create('sector_requests', function (Blueprint $table) {
             $table->id();
+            $table->string('code');
             $table->foreignId('citizen_id')->constrained('citizens');
             $table->foreignId('service_id')->constrained('services');
             $table->foreignId('sector_id')->constrained('sectors');

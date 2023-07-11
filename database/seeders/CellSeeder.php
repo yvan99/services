@@ -8,7 +8,7 @@ class CellSeeder extends Seeder
 {
     public function run()
     {
-        Cell::factory(30)->create();
+        Cell::factory(5)->create();
     }
 }
 
