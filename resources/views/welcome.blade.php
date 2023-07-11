@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         <div class="pxp-companies-card-1-bottom">
-                            <a href="jobs-list-1.html"
+                            <a href="/categories/{{$category->id}}"
                                 class="pxp-companies-card-1-company-jobs">{{ $category->services_count }} Services</a>
                         </div>
                     </div>
