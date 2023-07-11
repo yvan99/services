@@ -29,7 +29,7 @@
                     <div class="dropdown pxp-user-nav-dropdown">
                         <a href="/" class="dropdown-toggle" data-bs-toggle="dropdown">
                             <div class="pxp-user-nav-avatar pxp-cover"
-                                style="background-image: url(home/images/user.png);"></div>
+                                style="background-image: url(../home/images/user.png);"></div>
                             <div class="pxp-user-nav-name d-none d-md-block">{{ Auth::guard('citizen')->user()->names }}
                             </div>
                         </a>
