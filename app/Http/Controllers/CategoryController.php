@@ -14,4 +14,11 @@ class CategoryController extends Controller
 
         return view('welcome', compact('totalCategories', 'categories'));
     }
+
+    public function showServices(Category $category)
+    {
+        $services = $category->services()->get();
+
+        return view('category.show', compact('category', 'services'));
+    }
 }
