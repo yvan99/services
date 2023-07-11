@@ -1,49 +1,38 @@
 @include('components.home.css')
 @include('components.home.navbar')
 
-
-
 <section class="mt-100">
     <div class="pxp-container">
-        <div class="pxp-companies-list-top">
-            <div class="row justify-content-between align-items-center">
-                <div class="col-auto">
-                    <h2><span class="pxp-text-light">Showing</span> {{ $totalCategories }} <span
-                            class="pxp-text-light">service
-                            categories</span></h2>
-                </div>
-                {{-- <div class="col-auto">
-                    <select class="form-select">
-                        <option value="0" selected>Most relevant</option>
-                        <option value="1">Name Asc</option>
-                        <option value="2">Name Desc</option>
-                    </select>
-                </div> --}}
-            </div>
-        </div>
+        <h2 class="pxp-subsection-h2">Related Jobs</h2>
+        <p class="pxp-text-light">Other similar jobs that might interest you</p>
 
-        <div class="row">
-            @foreach ($categories as $category)
-                <div class="col-md-6 col-xl-4 col-xxl-3 pxp-companies-card-1-container">
-                    <div class="pxp-companies-card-1 pxp-has-border">
-                        <div class="pxp-companies-card-1-top">
-                            <a href="single-company-1.html"
-                                class="pxp-companies-card-1-company-name text-capitalize">{{ $category->name }}</a>
-                            <div class="pxp-companies-card-1-company-description pxp-text-light">
-                                {{ $category->description }}
+        <div class="row mt-3 mt-md-4 pxp-animate-in pxp-animate-in-top pxp-in">
+            <div class="col-xl-6 pxp-jobs-card-2-container">
+                <div class="pxp-jobs-card-2 pxp-has-border">
+                    <div class="pxp-jobs-card-2-top">
+                        <a href="single-company-1.html" class="pxp-jobs-card-2-company-logo" style="background-image: url(homepage/images/company-logo-2.png);"></a>
+                        <div class="pxp-jobs-card-2-info">
+                            <a href="single-job-1.html" class="pxp-jobs-card-2-title">Software Engineering Team Leader</a>
+                            <div class="pxp-jobs-card-2-details">
+                                <a href="jobs-list-1.html" class="pxp-jobs-card-2-location">
+                                    <span class="fa fa-globe"></span>Los Angeles, CA
+                                </a>
+                                <div class="pxp-jobs-card-2-type">Full-time</div>
                             </div>
                         </div>
-                        <div class="pxp-companies-card-1-bottom">
-                            <a href="jobs-list-1.html"
-                                class="pxp-companies-card-1-company-jobs">{{ $category->services_count }} Services</a>
+                    </div>
+                    <div class="pxp-jobs-card-2-bottom">
+                        <a href="jobs-list-1.html" class="pxp-jobs-card-2-category">
+                            <div class="pxp-jobs-card-2-category-label">Project Management</div>
+                        </a>
+                        <div class="pxp-jobs-card-2-bottom-right">
+                            <span class="pxp-jobs-card-2-date pxp-text-light">3 days ago by</span> <a href="single-company-1.html" class="pxp-jobs-card-2-company">Craftgenics</a>
                         </div>
                     </div>
                 </div>
-            @endforeach
-
+            </div>
 
         </div>
-
     </div>
 </section>
 
