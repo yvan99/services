@@ -3,16 +3,17 @@
 
 <section class="mt-100">
     <div class="pxp-container">
-        <h2 class="pxp-subsection-h2">Related Jobs</h2>
-        <p class="pxp-text-light">Other similar jobs that might interest you</p>
+        <h2 class="pxp-subsection-h2">{{ $category->name }}</h2>
+        <p class="pxp-text-light">{{ $category->description }}</p>
 
         <div class="row mt-3 mt-md-4 pxp-animate-in pxp-animate-in-top pxp-in">
+            @foreach ($services as $service)
             <div class="col-xl-6 pxp-jobs-card-2-container">
                 <div class="pxp-jobs-card-2 pxp-has-border">
                     <div class="pxp-jobs-card-2-top">
-                        <a href="single-company-1.html" class="pxp-jobs-card-2-company-logo" style="background-image: url(homepage/images/company-logo-2.png);"></a>
+                        <a href="single-company-1.html" class="pxp-jobs-card-2-company-logo" style="background-image: url(../home/images/company-logo-5.png);"></a>
                         <div class="pxp-jobs-card-2-info">
-                            <a href="single-job-1.html" class="pxp-jobs-card-2-title">Software Engineering Team Leader</a>
+                            <a href="single-job-1.html" class="pxp-jobs-card-2-title">{{ $service->name }}</a>
                             <div class="pxp-jobs-card-2-details">
                                 <a href="jobs-list-1.html" class="pxp-jobs-card-2-location">
                                     <span class="fa fa-globe"></span>Los Angeles, CA
@@ -31,6 +32,8 @@
                     </div>
                 </div>
             </div>
+        @endforeach
+ 
 
         </div>
     </div>

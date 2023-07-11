@@ -17,8 +17,12 @@ class CategoryController extends Controller
 
     public function showServices(Category $category)
     {
-        $services = $category->services()->get();
-
-        return view('category.show', compact('category', 'services'));
+        $category->load('services');
+    
+        return view('category.show', [
+            'category' => $category,
+            'services' => $category->services,
+        ]);
     }
+    
 }
