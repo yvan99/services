@@ -77,7 +77,7 @@
                     style="display: none;">
                     @csrf
 
-                    <input type="hidden" name="service_id" id="serviceIdInput">
+                    <input type="hidden" name="service_id" id="serviceIdInput1">
 
                     <div class="form-group mt-4">
                         <label class="mb-2 text-muted">Choose Sector</label>
@@ -152,8 +152,10 @@
         $('.pxp-jobs-card-2-company').click(function(event) {
             event.preventDefault();
             let serviceId = $(this).data('service-id');
+            console.log(serviceId)
             let serviceType = $(this).data('service-type');
             $('#serviceIdInput').val(serviceId);
+            $('#serviceIdInput1').val(serviceId);
             $('#serviceTypeInput').val(serviceType);
 
             $('#requestServiceModal').modal('show');
