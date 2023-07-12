@@ -22,6 +22,7 @@ class CreateSectorRequestsTable extends Migration
             $table->date('preferred_date');
             $table->time('preferred_hour');
             $table->text('description')->nullable();
+            $table->text('status')->default('pending');
             $table->timestamps();
         });
     }
