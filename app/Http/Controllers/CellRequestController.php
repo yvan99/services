@@ -27,13 +27,6 @@ class CellRequestController extends Controller
         return response()->json($cells);
     }
 
-    public function showCellRequests()
-    {
-        $cellRequests = CellRequest::where('citizen_id', Auth::guard('citizen')->user()->id)->get();
-
-        return view('requests.show', compact('cellRequests'));
-    }
-
      public function store(Request $request)
      {
          $loggedInCitizenId = Auth::guard('citizen')->user()->id;

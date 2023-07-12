@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CellRequest;
 use App\Models\SectorRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,11 +11,12 @@ use Illuminate\Support\Str;
 
 class SectorRequestController extends Controller
 {
-    public function showSectorRequests()
+    public function viewRequests()
     {
-        $sectorRequests = SectorRequest::where('citizen_id', auth()->user()->id)->get();
+        $sectorRequests = SectorRequest::where('citizen_id',Auth::guard('citizen')->user()->id )->get();
+        $cellRequests = CellRequest::where('citizen_id', Auth::guard('citizen')->user()->id)->get();
 
-        return view('requests.show', compact('sectorRequests'));
+        return view('requests.show', compact('sectorRequests','cellRequests'));
     }
 
     public function store(Request $request)

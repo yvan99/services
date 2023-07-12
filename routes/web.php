@@ -44,3 +44,9 @@ Route::prefix('sector-admin')->group(function () {
     Route::get('login', [SectorAdminAuthController::class, 'showLoginForm'])->name('sector-admin.login');
     Route::post('login', [SectorAdminAuthController::class, 'login'])->name('sector-admin.login.submit');
 });
+
+
+Route::middleware(['auth:citizen'])->prefix('citizen')->group(function () {
+    // View sector requests
+    Route::get('/requests', [SectorRequestController::class,'viewRequests'])->name('citizen.requests');
+});
