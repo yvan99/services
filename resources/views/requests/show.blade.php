@@ -22,6 +22,7 @@
                         <th>Preferred Hour</th>
                         <th>Description</th>
                         <th>Status</th>
+                        <th></th>
                     </thead>
 
                     @foreach ($sectorRequests as $request)
@@ -44,6 +45,15 @@
                                     <button class="btn btn-warning btn-sm">Scheduled</button>
                                 @endif
                             </td>
+
+                            <td>
+                                <div class="pxp-dashboard-table-options">
+                                    <ul class="list-unstyled">
+                                        <li><button title="View job details"><span class="fa fa-eye"></span></button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
                 </table>
@@ -64,6 +74,7 @@
                         <th>Preferred Hour</th>
                         <th>Description</th>
                         <th>Status</th>
+                        <th></th>
                     </thead>
 
                     @foreach ($cellRequests as $requeste)
@@ -85,6 +96,14 @@
                                 @else
                                     <button class="btn btn-warning btn-sm">Scheduled</button>
                                 @endif
+                            </td>
+                            <td>
+                                <div class="pxp-dashboard-table-options">
+                                    <ul class="list-unstyled">
+                                        <li><button title="View job details"><span class="fa fa-eye"></span></button>
+                                        </li>
+                                    </ul>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
