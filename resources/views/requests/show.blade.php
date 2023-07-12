@@ -1,9 +1,9 @@
 @include('components.home.css')
 @include('components.home.navbar')
-<section class="pxp-page-header-simple" style="background-color: var(--pxpMainColor);max-height:240px !important">
+<section class="pxp-page-header-simple" style="background-color: var(--pxpMainColor);max-height:200px !important">
     <div class="pxp-container mt-4">
         <h1 class="text-white">Service Requests List</h1>
-        <div class="pxp-hero-subtitle pxp-text-light text-white mt-3">view dhuidahidh</div>
+        {{-- <div class="pxp-hero-subtitle pxp-text-light text-white mt-3">view dhuidahidh</div> --}}
 
     </div>
 </section>
@@ -26,8 +26,8 @@
 
                     @foreach ($sectorRequests as $request)
                         <tr>
-                        <td style="width: 3%;"><div class="pxp-candidate-dashboard-job-avatar pxp-cover" style="background-image: url(../home/images/company-logo-5.png);"></div></td>
-                           <td>{{ $request->id }}</td>
+                        <td style="width: 3%;"><div class="pxp-candidate-dashboard-job-avatar pxp-cover" style="background-image: url(../home/images/company-logo-3.png);"></div></td>
+               
                            <td>{{ $request->code }}</td>
                            <td>{{ $request->sector->name }}</td>
                            <td>{{ $request->preferred_date }}</td>
@@ -46,7 +46,7 @@
             <div class="table-responsive mt-4">
                 <table class="table align-middle">
                     <thead>
-                        <th>Request ID</th>
+                        <th></th>
                         <th>Code</th>
                         {{-- <th>Sector</th> --}}
                         <th>Cell</th>
@@ -58,7 +58,8 @@
 
                     @foreach ($cellRequests as $requeste)
                         <tr>
-                           <td>{{ $requeste->id }}</td>
+                            <td style="width: 3%;"><div class="pxp-candidate-dashboard-job-avatar pxp-cover" style="background-image: url(../home/images/company-logo-6.png);"></div></td>
+                          
                            <td>{{ $requeste->code }}</td>
                            {{-- <td>{{ $requeste->sector->name }}</td> --}}
                            <td>{{ $requeste->cell->name }}</td>
