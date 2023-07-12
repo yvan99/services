@@ -27,23 +27,12 @@ class CellRequestController extends Controller
         return response()->json($cells);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function showCellRequests()
     {
-        //
+        $cellRequests = CellRequest::where('citizen_id', Auth::guard('citizen')->user()->id)->get();
+
+        return view('requests.show', compact('cellRequests'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
 
      public function store(Request $request)
      {
