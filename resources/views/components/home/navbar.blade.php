@@ -34,7 +34,7 @@
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="candidate-dashboard.html">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="/citizen/requests">Requests</a></li>
                             <li><a class="dropdown-item" href="/citizen/logout">Logout</a></li>
                         </ul>
                     </div>
