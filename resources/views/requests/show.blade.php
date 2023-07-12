@@ -26,14 +26,24 @@
 
                     @foreach ($sectorRequests as $request)
                         <tr>
-                        <td style="width: 3%;"><div class="pxp-candidate-dashboard-job-avatar pxp-cover" style="background-image: url(../home/images/company-logo-3.png);"></div></td>
-               
-                           <td>{{ $request->code }}</td>
-                           <td>{{ $request->sector->name }}</td>
-                           <td>{{ $request->preferred_date }}</td>
-                           <td>{{ $request->preferred_hour }}</td>
-                           <td> {{ $request->description }}</td>
-                           <td></td>
+                            <td style="width: 3%;">
+                                <div class="pxp-candidate-dashboard-job-avatar pxp-cover"
+                                    style="background-image: url(../home/images/company-logo-3.png);"></div>
+                            </td>
+
+                            <td>{{ $request->code }}</td>
+                            <td>{{ $request->sector->name }}</td>
+                            <td>{{ $request->preferred_date }}</td>
+                            <td>{{ $request->preferred_hour }}</td>
+                            <td> {{ $request->description }}</td>
+                            <td>
+
+                                @if ($request->status == 'pending')
+                                    <button class="btn btn-warning btn-sm">Pending</button>
+                                @else
+                                    <button class="btn btn-warning btn-sm">Scheduled</button>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </table>
@@ -58,15 +68,24 @@
 
                     @foreach ($cellRequests as $requeste)
                         <tr>
-                            <td style="width: 3%;"><div class="pxp-candidate-dashboard-job-avatar pxp-cover" style="background-image: url(../home/images/company-logo-6.png);"></div></td>
-                          
-                           <td>{{ $requeste->code }}</td>
-                           {{-- <td>{{ $requeste->sector->name }}</td> --}}
-                           <td>{{ $requeste->cell->name }}</td>
-                           <td>{{ $requeste->preferred_date }}</td>
-                           <td>{{ $requeste->preferred_hour }}</td>
-                           <td> {{ $requeste->description }}</td>
-                           <td></td>
+                            <td style="width: 3%;">
+                                <div class="pxp-candidate-dashboard-job-avatar pxp-cover"
+                                    style="background-image: url(../home/images/company-logo-6.png);"></div>
+                            </td>
+
+                            <td>{{ $requeste->code }}</td>
+                            {{-- <td>{{ $requeste->sector->name }}</td> --}}
+                            <td>{{ $requeste->cell->name }}</td>
+                            <td>{{ $requeste->preferred_date }}</td>
+                            <td>{{ $requeste->preferred_hour }}</td>
+                            <td> {{ $requeste->description }}</td>
+                            <td>
+                                @if ($request->status == 'pending')
+                                    <button class="btn btn-warning btn-sm">Pending</button>
+                                @else
+                                    <button class="btn btn-warning btn-sm">Scheduled</button>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </table>
