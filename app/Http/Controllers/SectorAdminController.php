@@ -30,7 +30,8 @@ class SectorAdminController extends Controller
 
         $callSms = new SmsController;
         $message ='Hello ' . $sectorAdmin->name . ', welcome to the project! You have been registered as a sector admin at ' . $sectorAdmin->sector . '. Your new password is: ' . $generatedPassword;
-        $sendSms = $callSms->sendSms($request->telephone,$message);
+        $callSms->sendSms($request->telephone,$message);
+        return redirect()->back()->with('status','User Registered');
 
     }
 
