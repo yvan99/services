@@ -1,5 +1,5 @@
 @include('components.dashcss')
-@include('sectoradmin.components.aside')
+@include('superuser.components.aside')
 <main class="main-content">
     <div class="position-relative ">
         <!--Nav Start-->
