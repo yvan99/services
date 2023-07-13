@@ -1344,7 +1344,7 @@ if (jQuery("#crypto-chart-04").length) {
   legend: {
     show: false
   },
-  colors:['#0073be'],
+  colors:['#0969c3'],
   grid: {
     show:false,
   },
@@ -1764,7 +1764,7 @@ if (document.querySelectorAll("#crypto-chart-06").length) {
   plotOptions: {
     candlestick: {
       colors: {
-        upward: '#0073be',
+        upward: '#0969c3',
         downward: '#08B1BA'
       }
     }
