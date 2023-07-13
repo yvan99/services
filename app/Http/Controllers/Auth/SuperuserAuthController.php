@@ -10,7 +10,7 @@ class SuperUserAuthController extends Controller
 {
     
     protected $redirectTo = '/admin/dashboard';
-    protected $redirectToLogout = '/superuser/login';
+    protected $redirectToLogout = '/admin/login';
 
     public function __construct()
     {
@@ -44,5 +44,15 @@ class SuperUserAuthController extends Controller
         return redirect()->back()->withInput($request->only('email'))->withErrors([
             'email' => 'These credentials do not match our records.',
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('superuser')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect($this->redirectToLogout)->with('status', 'You are logged out');
     }
 }

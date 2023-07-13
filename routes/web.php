@@ -21,7 +21,7 @@ Route::get('/cells/{sector}', [CellRequestController::class, 'getCellsBySector']
 
 
 // Superuser Authentication Routes
-Route::prefix('superuser')->group(function () {
+Route::prefix('admin')->group(function () {
     Route::get('login', [SuperUserAuthController::class, 'showLoginForm'])->name('superuser.login');
     Route::post('login', [SuperuserAuthController::class, 'login'])->name('superuser.login.submit');
 });
@@ -55,8 +55,8 @@ Route::middleware(['auth:citizen'])->prefix('citizen')->group(function () {
 Route::middleware(['auth:superuser'])->prefix('admin')->group(function () {
     Route::post('/sector-admins', [SectorAdminController::class,'register'])->name('sector-admins.register');
     Route::get('/dashboard', [SectorAdminController::class,'index'])->name('sector-admins.index');
-
     Route::post('/cell-admins', [SectorAdminController::class,'registerCellAdmin'])->name('cell-admins.register');
     Route::get('/cell-admins', [SectorAdminController::class,'showCellAdmins'])->name('sector-admins.index');
+    Route::get('/logout', [SuperUserAuthController::class,'logout']);
 
 });
