@@ -36,6 +36,33 @@ class SectorAdminController extends Controller
 
     }
 
+    public function registerCellAdmin(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:cell_admins',
+            'cell' => 'required',
+            'telephone' => 'required|unique:cell_admins'
+        ]);
+
+        $generatedPassword = $this->generatePassword();
+
+        // Create the sector admin
+        $cellAdmin = SectorAdmin::create([
+            'names' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'cell_id' => $validatedData['cell'],
+            'telephone' => $validatedData['telephone'],
+            'password' => Hash::make($generatedPassword),
+        ]);
+
+        $callSms = new SmsController;
+        $message ='Hello ' . $cellAdmin->names . ', welcome to the project! You have been registered as a sector admin at ' . $cellAdmin->cell->name . '. Your new password is: ' . $generatedPassword;
+        $callSms->sendSms($request->telephone,$message);
+        return redirect()->back()->with('status','User Registered');
+
+    }
+
     public function index()
     {
         $sectors = Sector::all();
