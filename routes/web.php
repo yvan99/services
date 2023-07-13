@@ -56,4 +56,7 @@ Route::middleware(['auth:superuser'])->prefix('admin')->group(function () {
     Route::post('/sector-admins', [SectorAdminController::class,'register'])->name('sector-admins.register');
     Route::get('/dashboard', [SectorAdminController::class,'index'])->name('sector-admins.index');
 
+    Route::post('/cell-admins', [SectorAdminController::class,'registerCellAdmin'])->name('cell-admins.register');
+    Route::get('/cell-admin', [SectorAdminController::class,'showCellAdmins'])->name('sector-admins.index');
+
 });
