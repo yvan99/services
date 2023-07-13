@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CellAdmin;
 use App\Models\Sector;
 use Illuminate\Http\Request;
 use App\Models\SectorAdmin;
@@ -30,10 +31,9 @@ class SectorAdminController extends Controller
         ]);
 
         $callSms = new SmsController;
-        $message ='Hello ' . $sectorAdmin->names . ', welcome to the project! You have been registered as a sector admin at ' . $sectorAdmin->sector->name . '. Your new password is: ' . $generatedPassword;
-        $callSms->sendSms($request->telephone,$message);
-        return redirect()->back()->with('status','User Registered');
-
+        $message = 'Hello ' . $sectorAdmin->names . ', welcome to the project! You have been registered as a sector admin at ' . $sectorAdmin->sector->name . '. Your new password is: ' . $generatedPassword;
+        $callSms->sendSms($request->telephone, $message);
+        return redirect()->back()->with('status', 'User Registered');
     }
 
     public function registerCellAdmin(Request $request)
@@ -47,8 +47,8 @@ class SectorAdminController extends Controller
 
         $generatedPassword = $this->generatePassword();
 
-        // Create the sector admin
-        $cellAdmin = SectorAdmin::create([
+        // Create the cell admin
+        $cellAdmin = CellAdmin::create([
             'names' => $validatedData['name'],
             'email' => $validatedData['email'],
             'cell_id' => $validatedData['cell'],
@@ -57,20 +57,26 @@ class SectorAdminController extends Controller
         ]);
 
         $callSms = new SmsController;
-        $message ='Hello ' . $cellAdmin->names . ', welcome to the project! You have been registered as a sector admin at ' . $cellAdmin->cell->name . '. Your new password is: ' . $generatedPassword;
-        $callSms->sendSms($request->telephone,$message);
-        return redirect()->back()->with('status','User Registered');
-
+        $message = 'Hello ' . $cellAdmin->names . ', welcome to the project! You have been registered as a sector admin at ' . $cellAdmin->cell->name . '. Your new password is: ' . $generatedPassword;
+        $callSms->sendSms($request->telephone, $message);
+        return redirect()->back()->with('status', 'User Registered');
     }
 
     public function index()
     {
         $sectors = Sector::all();
         $sectorAdmins = SectorAdmin::with('sector')->get();
-    
+
         return view('sectoradmin.index', compact('sectorAdmins', 'sectors'));
     }
-    
+
+    public function showCellAdmins()
+    {
+        $cellAdmins = CellAdmin::with(['cell.sector'])->get();
+
+        return view('cell-admins.index', compact('cellAdmins'));
+    }
+
 
     // Helper method to generate a random password
     private function generatePassword($length = 10)
