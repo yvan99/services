@@ -37,10 +37,11 @@ class SectorAdminController extends Controller
 
     public function index()
     {
-        $sectorAdmins = SectorAdmin::all();
-
+        $sectorAdmins = SectorAdmin::with('sector')->get();
+    
         return view('sector-admins.index', compact('sectorAdmins'));
     }
+    
 
     // Helper method to generate a random password
     private function generatePassword($length = 10)
