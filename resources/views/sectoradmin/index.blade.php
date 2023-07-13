@@ -23,37 +23,20 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive border rounded">
-                            <table id="datatable" class="table " data-toggle="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Description</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($departments as $department)
-                                        <tr>
-                                            <td>{{ $department->name }}</td>
-                                            <td>{{ $department->description }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
 
-                            <!-- Modal for adding energy -->
-                            <!-- Modal -->
-                            <div class="modal fade" id="createDepartmentModal" tabindex="-1" role="dialog"
-                                aria-labelledby="createDepartmentModalLabel" aria-hidden="true">
+
+
+                            <div class="modal fade" id="createAdminModal" tabindex="-1" role="dialog"
+                                aria-labelledby="createAdminModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="createDepartmentModalLabel">Create Department
-                                            </h5>
+                                            <h5 class="modal-title" id="createAdminModalLabel">Create Sector Admin</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
+                                                aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{ route('departments.store') }}" method="POST">
+                                            <form action="{{ route('sector-admins.register') }}" method="POST">
                                                 @csrf
                                                 <div class="form-group">
                                                     <label for="name">Name</label>
@@ -61,10 +44,27 @@
                                                         name="name" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="description">Description</label>
-                                                    <textarea class="form-control" id="description" name="description" required></textarea>
+                                                    <label for="email">Email</label>
+                                                    <input type="email" class="form-control" id="email"
+                                                        name="email" required>
                                                 </div>
-                                                <button type="submit" class="btn btn-primary">Create</button>
+
+                                                <div class="form-group">
+                                                    <label for="telephone">Telephone</label>
+                                                    <input type="text" class="form-control" id="telephone"
+                                                        name="telephone" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="sector">Sector</label>
+                                                    <select class="form-control" id="sector" name="sector" required>
+                                                        <option value="">Select Sector</option>
+                                                        @foreach ($sectors as $sector)
+                                                            <option value="{{ $sector->id }}">{{ $sector->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Register</button>
                                             </form>
                                         </div>
                                     </div>
