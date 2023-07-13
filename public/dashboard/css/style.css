@@ -1,0 +1,10 @@
+.auth-screen{
+    height: 100vh !important;
+}
+.form-control{
+    border:solid 1px #0073be !important;
+}
+
+.btn-success{
+    background-color: #026852 !important;
+}
