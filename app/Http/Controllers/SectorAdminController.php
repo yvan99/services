@@ -72,9 +72,10 @@ class SectorAdminController extends Controller
 
     public function showCellAdmins()
     {
+        $sectors = Sector::all();
         $cellAdmins = CellAdmin::with(['cell.sector'])->get();
 
-        return view('cell-admins.index', compact('cellAdmins'));
+        return view('celladmin.index', compact('cellAdmins','sectors'));
     }
 
 
