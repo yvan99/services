@@ -23,6 +23,8 @@
 
                     </div>
                     <div class="card-body">
+
+                        @include('components.alert')
                         <div class="table-responsive border rounded">
 
                             <table id="datatable" class="table" data-toggle="data-table">
@@ -41,7 +43,7 @@
                                             <td>{{ $cellAdmin->names }}</td>
                                             <td>{{ $cellAdmin->email }}</td>
                                             <td>{{ $cellAdmin->telephone }}</td>
-                                            <td>{{ $cellAdmin->sector->name }}</td>
+                                            <td>{{ $cellAdmin->cell->sector->name }}</td>
                                             <td>{{ $cellAdmin->cell->name }}</td>
                                         </tr>
                                     @endforeach
@@ -92,7 +94,7 @@
                                                 <div class="form-group mt-4">
                                                     <label class="mb-2 text-muted">Choose Cell</label>
 
-                                                    <select name="cell_id" id="cellSelect"
+                                                    <select name="cell" id="cellSelect"
                                                         class="form-control form-select" required>
 
                                                     </select>

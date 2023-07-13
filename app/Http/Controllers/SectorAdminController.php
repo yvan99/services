@@ -57,7 +57,7 @@ class SectorAdminController extends Controller
         ]);
 
         $callSms = new SmsController;
-        $message = 'Hello ' . $cellAdmin->names . ', welcome to the project! You have been registered as a sector admin at ' . $cellAdmin->cell->name . '. Your new password is: ' . $generatedPassword;
+        $message = 'Hello ' . $cellAdmin->names . ', welcome to the project! You have been registered as a cell admin at ' . $cellAdmin->cell->name . ' In ' . $cellAdmin->cell->sector->name . ' sector . Your new password is: ' . $generatedPassword;
         $callSms->sendSms($request->telephone, $message);
         return redirect()->back()->with('status', 'User Registered');
     }
@@ -75,7 +75,7 @@ class SectorAdminController extends Controller
         $sectors = Sector::all();
         $cellAdmins = CellAdmin::with(['cell.sector'])->get();
 
-        return view('celladmin.index', compact('cellAdmins','sectors'));
+        return view('celladmin.index', compact('cellAdmins', 'sectors'));
     }
 
 
