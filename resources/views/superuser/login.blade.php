@@ -3,17 +3,17 @@
 <body class="">
     <div class="wrapper">
         <section class="login-content overflow-hidden">
-            <div class="row no-gutters align-items-center auth-screen" style="background: #0073be">
+            <div class="row no-gutters align-items-center auth-screen" style="background: #0969c3">
                 <div class="col-md-12 col-lg-12 align-self-center">
                     <div class="row justify-content-center">
                         <div class="col-md-3">
                             <div class="card auth-card  d-flex justify-content-center mb-0">
                                 <div class="card-header">
-                                    <h3>{{ __('Doctor Login') }}</h3>
+                                    <h3>{{ __('Super Admin Login') }}</h3>
                                 </div>
 
                                 <div class="card-body">
-                                    <form method="POST" action="{{ route('doctor.login.submit') }}">
+                                    <form method="POST" action="{{ route('superuser.login.submit') }}">
                                         @csrf
 
                                         <div class="form-group row">
@@ -50,7 +50,7 @@
                                         </div>
                                         <div class="form-group row mb-0">
                                             <div class="col-md-6">
-                                                <button type="submit" class="btn btn-success">
+                                                <button type="submit" class="btn btn-warning">
                                                     {{ __('Login') }}
                                                 </button>
                                             </div>
