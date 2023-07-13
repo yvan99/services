@@ -28,10 +28,10 @@ class SectorAdminController extends Controller
             'password' => Hash::make($generatedPassword),
         ]);
 
-        // Return a response with the welcome message and generated password
-        return response()->json([
-            'message' => 'Hello ' . $sectorAdmin->name . ', welcome to the project! You have been registered as a sector admin at ' . $sectorAdmin->sector . '. Your new password is: ' . $generatedPassword,
-        ]);
+        $callSms = new SmsController;
+        $message ='Hello ' . $sectorAdmin->name . ', welcome to the project! You have been registered as a sector admin at ' . $sectorAdmin->sector . '. Your new password is: ' . $generatedPassword;
+        $sendSms = $callSms->sendSms($request->telephone,$message);
+
     }
 
     public function index()
