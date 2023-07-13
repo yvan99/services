@@ -16,13 +16,35 @@
 
                         </div>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#createDepartmentModal">
-                            Create Department
+                            data-bs-target="#createAdminModal">
+                            Create Sector Admin
                         </button>
+
 
                     </div>
                     <div class="card-body">
                         <div class="table-responsive border rounded">
+
+                            <table id="datatable" class="table" data-toggle="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Telephone</th>
+                                        <th>Sector</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($sectorAdmins as $sectorAdmin)
+                                        <tr>
+                                            <td>{{ $sectorAdmin->names }}</td>
+                                            <td>{{ $sectorAdmin->email }}</td>
+                                            <td>{{ $sectorAdmin->telephone }}</td>
+                                            <td>{{ $sectorAdmin->sector->name }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
 
 
 
@@ -56,7 +78,8 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="sector">Sector</label>
-                                                    <select class="form-control form-select" id="sector" name="sector" required>
+                                                    <select class="form-control form-select" id="sector"
+                                                        name="sector" required>
                                                         <option value="">Select Sector</option>
                                                         @foreach ($sectors as $sector)
                                                             <option value="{{ $sector->id }}">{{ $sector->name }}

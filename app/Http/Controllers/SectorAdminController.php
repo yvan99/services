@@ -22,15 +22,15 @@ class SectorAdminController extends Controller
 
         // Create the sector admin
         $sectorAdmin = SectorAdmin::create([
-            'name' => $validatedData['name'],
+            'names' => $validatedData['name'],
             'email' => $validatedData['email'],
-            'sector' => $validatedData['sector'],
+            'sector_id' => $validatedData['sector'],
             'telephone' => $validatedData['telephone'],
             'password' => Hash::make($generatedPassword),
         ]);
 
         $callSms = new SmsController;
-        $message ='Hello ' . $sectorAdmin->name . ', welcome to the project! You have been registered as a sector admin at ' . $sectorAdmin->sector . '. Your new password is: ' . $generatedPassword;
+        $message ='Hello ' . $sectorAdmin->names . ', welcome to the project! You have been registered as a sector admin at ' . $sectorAdmin->sector->name . '. Your new password is: ' . $generatedPassword;
         $callSms->sendSms($request->telephone,$message);
         return redirect()->back()->with('status','User Registered');
 
