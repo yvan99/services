@@ -41,7 +41,7 @@ class SectorAdminController extends Controller
         $sectors = Sector::all();
         $sectorAdmins = SectorAdmin::with('sector')->get();
     
-        return view('sector-admins.index', compact('sectorAdmins', 'sectors'));
+        return view('sectoradmin.index', compact('sectorAdmins', 'sectors'));
     }
     
 

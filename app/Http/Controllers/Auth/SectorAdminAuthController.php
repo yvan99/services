@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class SectorAdminAuthController extends Controller
 {
 
-    protected $redirectTo = '/sector-admin/dashboard';
+    protected $redirectTo = '/sector/dashboard';
     protected $redirectToLogout = '/sector-admin/login';
 
     public function __construct()

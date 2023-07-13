@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\SectorAdminAuthController;
 use App\Http\Controllers\Auth\SuperUserAuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CellRequestController;
+use App\Http\Controllers\SectorAdminController;
 use App\Http\Controllers\SectorRequestController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,4 +50,10 @@ Route::prefix('sector-admin')->group(function () {
 Route::middleware(['auth:citizen'])->prefix('citizen')->group(function () {
     // View sector requests
     Route::get('/requests', [SectorRequestController::class,'viewRequests'])->name('citizen.requests');
+});
+
+Route::middleware(['auth:superuser'])->prefix('admin')->group(function () {
+    Route::post('/sector-admins', [SectorAdminController::class,'register'])->name('sector-admins.register');
+    Route::get('/dashboard', [SectorAdminController::class,'index'])->name('sector-admins.index');
+
 });

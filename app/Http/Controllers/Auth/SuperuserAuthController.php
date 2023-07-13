@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class SuperUserAuthController extends Controller
 {
     
-    protected $redirectTo = '/superuser/dashboard';
+    protected $redirectTo = '/admin/dashboard';
     protected $redirectToLogout = '/superuser/login';
 
     public function __construct()
