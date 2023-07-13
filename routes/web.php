@@ -3,7 +3,7 @@
 use App\Http\Controllers\Auth\CellAdminAuthController;
 use App\Http\Controllers\Auth\CitizenAuthController;
 use App\Http\Controllers\Auth\SectorAdminAuthController;
-use App\Http\Controllers\Auth\SuperuserAuthController;
+use App\Http\Controllers\Auth\SuperUserAuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CellRequestController;
 use App\Http\Controllers\SectorRequestController;
@@ -21,7 +21,7 @@ Route::get('/cells/{sector}', [CellRequestController::class, 'getCellsBySector']
 
 // Superuser Authentication Routes
 Route::prefix('superuser')->group(function () {
-    Route::get('login', [SuperuserAuthController::class, 'showLoginForm'])->name('superuser.login');
+    Route::get('login', [SuperUserAuthController::class, 'showLoginForm'])->name('superuser.login');
     Route::post('login', [SuperuserAuthController::class, 'login'])->name('superuser.login.submit');
 });
 

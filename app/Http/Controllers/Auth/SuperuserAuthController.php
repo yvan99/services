@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class SuperuserAuthController extends Controller
+class SuperUserAuthController extends Controller
 {
     
     protected $redirectTo = '/superuser/dashboard';
@@ -27,11 +27,22 @@ class SuperuserAuthController extends Controller
         return Auth::guard('superuser');
     }
 
-    protected function validateLogin(Request $request)
+
+    public function login(Request $request)
     {
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
+        ]);
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::guard('superuser')->attempt($credentials)) {
+            return redirect()->intended($this->redirectTo)->with('status', 'You are now logged in.');
+        }
+
+        return redirect()->back()->withInput($request->only('email'))->withErrors([
+            'email' => 'These credentials do not match our records.',
         ]);
     }
 }
