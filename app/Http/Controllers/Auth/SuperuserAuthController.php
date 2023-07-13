@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class SuperuserAuthController extends Controller
 {
-    use AuthenticatesUsers;
-
+    
     protected $redirectTo = '/superuser/dashboard';
     protected $redirectToLogout = '/superuser/login';
 
@@ -20,12 +19,12 @@ class SuperuserAuthController extends Controller
 
     public function showLoginForm()
     {
-        return view('auth.superuser-login');
+        return view('superuser.login');
     }
 
     protected function guard()
     {
-        return \Auth::guard('superuser');
+        return Auth::guard('superuser');
     }
 
     protected function validateLogin(Request $request)
