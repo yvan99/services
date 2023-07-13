@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sector;
 use Illuminate\Http\Request;
 use App\Models\SectorAdmin;
 use Illuminate\Support\Facades\Hash;
@@ -37,9 +38,10 @@ class SectorAdminController extends Controller
 
     public function index()
     {
+        $sectors = Sector::all();
         $sectorAdmins = SectorAdmin::with('sector')->get();
     
-        return view('sector-admins.index', compact('sectorAdmins'));
+        return view('sector-admins.index', compact('sectorAdmins', 'sectors'));
     }
     
 

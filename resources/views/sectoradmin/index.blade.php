@@ -56,7 +56,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="sector">Sector</label>
-                                                    <select class="form-control" id="sector" name="sector" required>
+                                                    <select class="form-control form-select" id="sector" name="sector" required>
                                                         <option value="">Select Sector</option>
                                                         @foreach ($sectors as $sector)
                                                             <option value="{{ $sector->id }}">{{ $sector->name }}
