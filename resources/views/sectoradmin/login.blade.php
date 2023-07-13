@@ -13,7 +13,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <form method="POST" action="{{ route('superuser.login.submit') }}">
+                                    <form method="POST" action="{{ route('sector-admin.login.submit') }}">
                                         @csrf
 
                                         <div class="form-group row">
