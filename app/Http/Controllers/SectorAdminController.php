@@ -17,7 +17,6 @@ class SectorAdminController extends Controller
             'telephone' => 'required|unique:sector_admins'
         ]);
 
-        // Generate a random password for the sector admin
         $generatedPassword = $this->generatePassword();
 
         // Create the sector admin
