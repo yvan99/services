@@ -84,7 +84,7 @@ class SectorAdminController extends Controller
     // Helper method to generate a random password
     private function generatePassword($length = 10)
     {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $characters = '0123456789aABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $password = '';
         $max = strlen($characters) - 1;
 
