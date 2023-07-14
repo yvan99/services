@@ -15,9 +15,8 @@
                             <h4 class="card-title">Cell Admins</h4>
 
                         </div>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#createCategoryModal">
-                            Create Category
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createServiceModal">
+                            Create Service
                         </button>
 
 
@@ -27,55 +26,59 @@
                         @include('components.alert')
                         <div class="table-responsive border rounded">
 
+
                             <table id="datatable" class="table" data-toggle="data-table">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
                                         <th>Description</th>
-                                        <th>Created At</th>
+                                        <th>Category</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($categories as $category)
+                                    @foreach ($services as $service)
                                         <tr>
-                                            <td>{{ $category->name }}</td>
-                                            <td>{{ $category->description }}</td>
-                                            <td>{{ $category->created_at }}</td>
+                                            <td>{{ $service->name }}</td>
+                                            <td>{{ $service->description }}</td>
+                                            <td>{{ $service->category->name }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
 
-
-
-                            <div class="modal fade" id="createCategoryModal" tabindex="-1" role="dialog"
-                                aria-labelledby="createCategoryModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="createCategoryModalLabel">Create Category</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="{{ route('categories.register') }}" method="POST">
-                                                @csrf
-                                                <div class="form-group">
-                                                    <label for="name">Name</label>
-                                                    <input type="text" class="form-control" id="name"
-                                                        name="name" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="description">Description</label>
-                                                    <textarea class="form-control" id="description" name="description" required></textarea>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Create</button>
-                                            </form>
-                                        </div>
+                            <div class="modal fade" id="createServiceModal" tabindex="-1" role="dialog" aria-labelledby="createServiceModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="createServiceModalLabel">Create Service</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('services.register') }}" method="POST">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="name">Name</label>
+                                                <input type="text" class="form-control" id="name" name="name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="description">Description</label>
+                                                <textarea class="form-control" id="description" name="description" required></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="category_id">Category</label>
+                                                <select class="form-control" id="category_id" name="category_id" required>
+                                                    @foreach ($categories as $category)
+                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Create</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-
+                        </div>
                         </div>
                     </div>
                 </div>
