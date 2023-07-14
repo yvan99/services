@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\SectorAdminAuthController;
 use App\Http\Controllers\Auth\SuperUserAuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CellRequestController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\SectorAdminController;
 use App\Http\Controllers\SectorRequestController;
 use Illuminate\Support\Facades\Route;
@@ -62,6 +63,7 @@ Route::middleware(['auth:superuser'])->prefix('admin')->group(function () {
 
 
 Route::middleware(['auth:sector_admin'])->prefix('sector')->group(function () {
-    Route::get('/dashboard', [SectorAdminController::class, 'viewSectorRequests']); 
+    Route::get('/dashboard', [SectorAdminController::class, 'viewSectorRequests']);
     Route::get('/logout', [SectorAdminAuthController::class, 'logout']);
+    Route::post('/sector-schedule', [ScheduleController::class, 'makeAppointment'])->name('sector-schedule.store');
 });
