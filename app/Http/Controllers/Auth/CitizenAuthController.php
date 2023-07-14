@@ -18,8 +18,6 @@ class CitizenAuthController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-
-
     public function register(Request $request)
     {
         $request->validate([

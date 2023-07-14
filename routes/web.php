@@ -3,13 +3,13 @@
 use App\Http\Controllers\Auth\CellAdminAuthController;
 use App\Http\Controllers\Auth\CitizenAuthController;
 use App\Http\Controllers\Auth\SectorAdminAuthController;
-use App\Http\Controllers\Auth\SuperuserAuthController;
+use App\Http\Controllers\Auth\SuperUserAuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CellRequestController;
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\SectorAdminController;
 use App\Http\Controllers\SectorRequestController;
 use Illuminate\Support\Facades\Route;
-
-
 
 Route::get('/', [CategoryController::class, 'index']);
 Route::get('categories/{category}', [CategoryController::class, 'showServices'])->name('categories.show');
@@ -17,11 +17,9 @@ Route::post('/cell/requests', [CellRequestController::class, 'store'])->name('ce
 Route::post('/sector/requests', [SectorRequestController::class, 'store'])->name('sector.requests.store');
 Route::get('/cells/{sector}', [CellRequestController::class, 'getCellsBySector'])->name('cells.bySector');
 
-
-
 // Superuser Authentication Routes
-Route::prefix('superuser')->group(function () {
-    Route::get('login', [SuperuserAuthController::class, 'showLoginForm'])->name('superuser.login');
+Route::prefix('admin')->group(function () {
+    Route::get('login', [SuperUserAuthController::class, 'showLoginForm'])->name('superuser.login');
     Route::post('login', [SuperuserAuthController::class, 'login'])->name('superuser.login.submit');
 });
 
@@ -40,7 +38,7 @@ Route::prefix('cell-admin')->group(function () {
 });
 
 // Sector Admin Authentication Routes
-Route::prefix('sector-admin')->group(function () {
+Route::prefix('sector')->group(function () {
     Route::get('login', [SectorAdminAuthController::class, 'showLoginForm'])->name('sector-admin.login');
     Route::post('login', [SectorAdminAuthController::class, 'login'])->name('sector-admin.login.submit');
 });
@@ -48,5 +46,24 @@ Route::prefix('sector-admin')->group(function () {
 
 Route::middleware(['auth:citizen'])->prefix('citizen')->group(function () {
     // View sector requests
-    Route::get('/requests', [SectorRequestController::class,'viewRequests'])->name('citizen.requests');
+    Route::get('/requests', [SectorRequestController::class, 'viewRequests'])->name('citizen.requests');
+});
+
+Route::middleware(['auth:superuser'])->prefix('admin')->group(function () {
+    Route::post('/sector-admins', [SectorAdminController::class, 'register'])->name('sector-admins.register');
+    Route::get('/dashboard', [SectorAdminController::class, 'index'])->name('sector-admins.index');
+    Route::post('/cell-admins', [SectorAdminController::class, 'registerCellAdmin'])->name('cell-admins.register');
+    Route::get('/cell-admins', [SectorAdminController::class, 'showCellAdmins']);
+    Route::get('/logout', [SuperUserAuthController::class, 'logout']);
+    Route::get('/service-category', [CategoryController::class, 'viewCategories']);
+    Route::post('/service-category', [CategoryController::class, 'registerCategory'])->name('categories.register');
+    Route::get('/services', [CategoryController::class, 'viewServices']);
+    Route::post('/services', [CategoryController::class, 'registerService'])->name('services.register');
+});
+
+
+Route::middleware(['auth:sector_admin'])->prefix('sector')->group(function () {
+    Route::get('/dashboard', [SectorAdminController::class, 'viewSectorRequests']);
+    Route::get('/logout', [SectorAdminAuthController::class, 'logout']);
+    Route::post('/sector-schedule', [ScheduleController::class, 'makeAppointment'])->name('sector-schedule.store');
 });

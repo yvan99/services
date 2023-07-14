@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SectorAdminAuthController extends Controller
 {
-    use AuthenticatesUsers;
 
-    protected $redirectTo = '/sector-admin/dashboard';
-    protected $redirectToLogout = '/sector-admin/login';
+    protected $redirectTo = '/sector/dashboard';
+    protected $redirectToLogout = '/sector/login';
 
     public function __construct()
     {
@@ -20,19 +19,40 @@ class SectorAdminAuthController extends Controller
 
     public function showLoginForm()
     {
-        return view('auth.sector-admin-login');
+        return view('sectoradmin.login');
     }
 
     protected function guard()
     {
-        return \Auth::guard('sector_admin');
+        return Auth::guard('sector_admin');
     }
-
-    protected function validateLogin(Request $request)
+    public function login(Request $request)
     {
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::guard('sector_admin')->attempt($credentials)) {
+            return redirect()->intended($this->redirectTo)->with('status', 'You are now logged in.');
+        }
+
+        return redirect()->back()->withInput($request->only('email'))->withErrors([
+            'email' => 'These credentials do not match our records.',
+        ]);
     }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('sector_admin')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect($this->redirectToLogout)->with('status', 'You are logged out');
+    }
+
+
 }

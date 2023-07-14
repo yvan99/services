@@ -62,7 +62,7 @@
 
 
         <div class="mt-4 mt-lg-5">
-            <h5 class="mb-4 text-muted">Sector Based Service Requests</h5>
+            <h5 class="mb-4 text-muted">Cell Based Service Requests</h5>
             <div class="table-responsive mt-4">
                 <table class="table align-middle">
                     <thead>
