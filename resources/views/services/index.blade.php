@@ -12,7 +12,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Cell Admins</h4>
+                            <h4 class="card-title">Manage Services</h4>
 
                         </div>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
