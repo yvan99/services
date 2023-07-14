@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Cell;
 use App\Models\Sector;
-use App\Models\Service;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -15,6 +15,21 @@ class CategoryController extends Controller
         $categories = Category::withCount('services')->get();
 
         return view('welcome', compact('totalCategories', 'categories'));
+    }
+
+    public function registerCategory(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $category = new Category();
+        $category->name = $request->input('name');
+        $category->description = $request->input('description');
+        $category->save();
+
+        return redirect()->back()->with('success', 'Category registered successfully!');
     }
 
     public function showServices(Category $category)
