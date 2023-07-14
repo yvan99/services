@@ -45,27 +45,6 @@
         height: 35px; /* Adjust the height of events */
     }
 </style>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<style>
-    .toast-bottom-center {
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-</style>
-<script>
-    toastr.options.positionClass = 'toast-bottom-center';
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            toastr.error('{{ $error }}');
-        @endforeach
-    @endif
-
-    @if (session('status'))
-        toastr.success('{{ session('status') }}');
-    @endif
-</script>
  </body>
 
  </html>

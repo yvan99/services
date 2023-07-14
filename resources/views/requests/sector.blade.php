@@ -138,14 +138,9 @@
                 method: 'POST',
                 data: payload,
                 success: function(response) {
-                    $('#loadingModal').modal('hide');
-
-                    selectedRequests = [];
-                    $('.request-checkbox').prop('checked', false);
-
-                    $('#requestActions').hide();
-
-                    alert(response.message);
+                    $('#registerModal').modal('hide');
+                    alert('Schedule Initiated successfully');
+                    location.reload();
                 },
                 error: function(xhr, status, error) {
                     $('#loadingModal').modal('hide');

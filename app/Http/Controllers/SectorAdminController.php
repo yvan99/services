@@ -101,11 +101,10 @@ class SectorAdminController extends Controller
         $sectorId = $sectorAdmin->sector_id;
     
         // Get the sector requests in the admin's sector
-        $sectorRequests = SectorRequest::where('sector_id', $sectorId)->orderBy('sector_requests.created_at')->get();
+        $sectorRequests = SectorRequest::where('sector_id', $sectorId)->where('status','pending')->orderBy('sector_requests.created_at')->get();
     
         // Eager load the citizen and service relationships
         $sectorRequests->load('citizen', 'service');
-    
         return view('requests.sector', compact('sectorRequests'));
     }
 }
