@@ -26,11 +26,21 @@ class ScheduleController extends Controller
                 'title' => $title,
             ]);
             $schedules[] = $schedule;
+
+            // Send SMS notification to the citizen
+            $message = "Hello, {$sectorRequest->citizen->names}!";
+            $message .= " Your appointment for the service request with code: {$sectorRequest->code} has been approved by the sector administration of: {$sectorRequest->sector->name} ";
+            $message .= " At: {$request->input('date')}";
+            $message .= " On: {$request->input('hour')}";
         }
+
+        $callSmsClass = new SmsController;
+        $callSmsClass->sendSms($sectorRequest->citizen->telephone, $message);
 
         return response()->json([
             'message' => 'Schedules created successfully',
             'schedules' => $schedules,
+            'messages'=>$message
         ]);
     }
 }
