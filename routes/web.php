@@ -32,7 +32,7 @@ Route::prefix('citizen')->group(function () {
 });
 
 // Cell Admin Authentication Routes
-Route::prefix('cell-admin')->group(function () {
+Route::prefix('cell')->group(function () {
     Route::get('login', [CellAdminAuthController::class, 'showLoginForm'])->name('cell-admin.login');
     Route::post('login', [CellAdminAuthController::class, 'login'])->name('cell-admin.login.submit');
 });
@@ -66,4 +66,10 @@ Route::middleware(['auth:sector_admin'])->prefix('sector')->group(function () {
     Route::get('/dashboard', [SectorAdminController::class, 'viewSectorRequests']);
     Route::get('/logout', [SectorAdminAuthController::class, 'logout']);
     Route::post('/sector-schedule', [ScheduleController::class, 'makeAppointment'])->name('sector-schedule.store');
+});
+
+Route::middleware(['auth:cell_admin'])->prefix('cell')->group(function () {
+    Route::get('/dashboard', [SectorAdminController::class, 'viewCellRequests']);
+    Route::get('/logout', [CellAdminAuthController::class, 'logout']);
+    Route::post('/cell-schedule', [ScheduleController::class, 'makeCellAppointment'])->name('cell-schedule.store');
 });
