@@ -32,6 +32,13 @@ class CategoryController extends Controller
         return redirect()->back()->with('success', 'Category registered successfully!');
     }
 
+    public function viewCategories()
+    {
+        $categories = Category::all();
+
+        return view('category.index', compact('categories'));
+    }
+
     public function showServices(Category $category)
     {
         $category->load('services');

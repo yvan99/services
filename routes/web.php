@@ -54,6 +54,6 @@ Route::middleware(['auth:superuser'])->prefix('admin')->group(function () {
     Route::post('/cell-admins', [SectorAdminController::class, 'registerCellAdmin'])->name('cell-admins.register');
     Route::get('/cell-admins', [SectorAdminController::class, 'showCellAdmins'])->name('sector-admins.index');
     Route::get('/logout', [SuperUserAuthController::class, 'logout']);
-    Route::get('/service-category', [CategoryController::class, 'showCategories']);
-    Route::post('/service-category', [CategoryController::class, 'addCategories'])->name('categories.register');
+    Route::get('/service-category', [CategoryController::class, 'viewCategories']);
+    Route::post('/service-category', [CategoryController::class, 'registerCategory'])->name('categories.register');
 });
