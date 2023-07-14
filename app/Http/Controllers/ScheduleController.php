@@ -13,7 +13,11 @@ class ScheduleController extends Controller
         $sectorRequestIds = $request->input('sector_request_id', []);
         $sectorRequests = SectorRequest::whereIn('id', $sectorRequestIds)->get();
         $schedules = [];
+
         foreach ($sectorRequests as $sectorRequest) {
+            $sectorRequest->status = 'approved';
+            $sectorRequest->save();
+
             $title = $sectorRequest->citizen->names . ' - ' . $sectorRequest->code;
             $schedule = SectorSchedule::create([
                 'sector_request_id' => $sectorRequest->id,
@@ -23,10 +27,10 @@ class ScheduleController extends Controller
             ]);
             $schedules[] = $schedule;
         }
+
         return response()->json([
             'message' => 'Schedules created successfully',
             'schedules' => $schedules,
         ]);
     }
-      
 }

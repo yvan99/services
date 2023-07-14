@@ -95,10 +95,8 @@
 </main>
 @include('components.dashjs')
 <script>
-    $(document).ready(function() {
+    $(document).ready(() => {
         let selectedRequests = [];
-
-        // Handle checkbox change event
         $('.request-checkbox').change(function() {
             const requestId = $(this).val();
             if ($(this).is(':checked')) {
@@ -106,86 +104,55 @@
             } else {
                 selectedRequests = selectedRequests.filter(id => id !== requestId);
             }
-            if (selectedRequests.length > 0) {
-                $('#requestActions').show();
-            } else {
-                $('#requestActions').hide();
-            }
+            $('#requestActions').toggle(selectedRequests.length > 0);
             console.log(selectedRequests);
         });
 
-        // Handle "Select All" checkbox change event
         $('#selectAllCheckbox').change(function() {
-            // Get the checkbox state
             const isChecked = $(this).is(':checked');
-
-            // Update the state of all request checkboxes
             $('.request-checkbox').prop('checked', isChecked);
-
-            // Update the selectedRequests array based on checkbox state
-            if (isChecked) {
-                selectedRequests = $('.request-checkbox').map(function() {
-                    return $(this).val();
-                }).get();
-            } else {
-                selectedRequests = [];
-            }
-
-            if (selectedRequests.length > 0) {
-                $('#requestActions').show();
-            } else {
-                $('#requestActions').hide();
-            }
+            selectedRequests = isChecked ? $('.request-checkbox').map(function() {
+                return $(this).val();
+            }).get() : [];
+            $('#requestActions').toggle(selectedRequests.length > 0);
             console.log(selectedRequests);
         });
 
-        $('#scheduleButton').click(function() {
-            var date = $('#datepicker').val();
-            var hour = $('#timepicker').val();
+        $('#scheduleButton').click(() => {
+            const date = $('#datepicker').val();
+            const hour = $('#timepicker').val();
 
-            // Collect the sector request IDs into an array
-            var sectorRequestIds = selectedRequests;
+            const sectorRequestIds = selectedRequests;
 
-            // Prepare the payload
-            var payload = {
+            const payload = {
                 sector_request_id: sectorRequestIds,
-                date: date,
-                hour: hour,
+                date,
+                hour,
                 _token: '{{ csrf_token() }}'
             };
 
-            // Show the loading modal screen
             $('#loadingModal').modal('show');
-            console.log(payload)
-            // Make the AJAX request to store the sector schedules
+
             $.ajax({
                 url: '{{ route('sector-schedule.store') }}',
                 method: 'POST',
                 data: payload,
                 success: function(response) {
-                    // Hide the loading modal screen
                     $('#loadingModal').modal('hide');
 
-                    // Reset the selected requests and checkboxes
                     selectedRequests = [];
                     $('.request-checkbox').prop('checked', false);
 
-                    // Hide the requestActions div
                     $('#requestActions').hide();
 
-                    // Show a success message or perform any other actions
                     alert(response.message);
                 },
                 error: function(xhr, status, error) {
-                    // Hide the loading modal screen
                     $('#loadingModal').modal('hide');
 
-                    // Show an error message or perform any other error handling
                     alert('Error: ' + error);
                 }
             });
         });
-
-
     });
 </script>
