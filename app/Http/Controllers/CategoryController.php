@@ -61,7 +61,7 @@ class CategoryController extends Controller
         $services = Service::with('category')->get();
         $categories = Category::all();
 
-        return view('services.index', compact('services','categories'));
+        return view('services.index', compact('services', 'categories'));
     }
 
     public function registerService(Request $request)
@@ -69,11 +69,13 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
+            'level' => 'required',
             'category_id' => 'required|exists:categories,id',
         ]);
 
         $service = new Service();
         $service->name = $request->input('name');
+        $service->level = $request->input('level');
         $service->description = $request->input('description');
         $service->category_id = $request->input('category_id');
         $service->save();
