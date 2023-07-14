@@ -52,7 +52,7 @@ Route::middleware(['auth:superuser'])->prefix('admin')->group(function () {
     Route::post('/sector-admins', [SectorAdminController::class, 'register'])->name('sector-admins.register');
     Route::get('/dashboard', [SectorAdminController::class, 'index'])->name('sector-admins.index');
     Route::post('/cell-admins', [SectorAdminController::class, 'registerCellAdmin'])->name('cell-admins.register');
-    Route::get('/cell-admins', [SectorAdminController::class, 'showCellAdmins'])->name('sector-admins.index');
+    Route::get('/cell-admins', [SectorAdminController::class, 'showCellAdmins']);
     Route::get('/logout', [SuperUserAuthController::class, 'logout']);
     Route::get('/service-category', [CategoryController::class, 'viewCategories']);
     Route::post('/service-category', [CategoryController::class, 'registerCategory'])->name('categories.register');
@@ -62,5 +62,6 @@ Route::middleware(['auth:superuser'])->prefix('admin')->group(function () {
 
 
 Route::middleware(['auth:sector_admin'])->prefix('sector')->group(function () {
-    Route::get('/dashboard', [SectorAdminController::class, 'index'])->name('sector-admins.index'); 
+    Route::get('/dashboard', [SectorAdminController::class, 'viewSectorRequests']); 
+    Route::get('/logout', [SectorAdminAuthController::class, 'logout']);
 });

@@ -44,5 +44,15 @@ class SectorAdminAuthController extends Controller
         ]);
     }
 
+    public function logout(Request $request)
+    {
+        Auth::guard('sector_admin')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect($this->redirectToLogout)->with('status', 'You are logged out');
+    }
+
 
 }

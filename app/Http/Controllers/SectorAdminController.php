@@ -6,6 +6,8 @@ use App\Models\CellAdmin;
 use App\Models\Sector;
 use Illuminate\Http\Request;
 use App\Models\SectorAdmin;
+use App\Models\SectorRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class SectorAdminController extends Controller
@@ -91,5 +93,19 @@ class SectorAdminController extends Controller
         }
 
         return $password;
+    }
+
+    public function viewSectorRequests()
+    {
+        $sectorAdmin = Auth::guard('sector_admin')->user();
+        $sectorId = $sectorAdmin->sector_id;
+    
+        // Get the sector requests in the admin's sector
+        $sectorRequests = SectorRequest::where('sector_id', $sectorId)->orderBy('sector_requests.created_at')->get();
+    
+        // Eager load the citizen and service relationships
+        $sectorRequests->load('citizen', 'service');
+    
+        return view('requests.sector', compact('sectorRequests'));
     }
 }
