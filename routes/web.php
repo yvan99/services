@@ -37,7 +37,7 @@ Route::prefix('cell-admin')->group(function () {
 });
 
 // Sector Admin Authentication Routes
-Route::prefix('sector-admin')->group(function () {
+Route::prefix('sector')->group(function () {
     Route::get('login', [SectorAdminAuthController::class, 'showLoginForm'])->name('sector-admin.login');
     Route::post('login', [SectorAdminAuthController::class, 'login'])->name('sector-admin.login.submit');
 });

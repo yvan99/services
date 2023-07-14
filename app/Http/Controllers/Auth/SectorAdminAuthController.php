@@ -10,7 +10,7 @@ class SectorAdminAuthController extends Controller
 {
 
     protected $redirectTo = '/sector/dashboard';
-    protected $redirectToLogout = '/sector-admin/login';
+    protected $redirectToLogout = '/sector/login';
 
     public function __construct()
     {
@@ -19,7 +19,7 @@ class SectorAdminAuthController extends Controller
 
     public function showLoginForm()
     {
-        return view('auth.sector-admin-login');
+        return view('sectoradmin.login');
     }
 
     protected function guard()
@@ -35,7 +35,7 @@ class SectorAdminAuthController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        if (Auth::guard('sector-admin')->attempt($credentials)) {
+        if (Auth::guard('sector_admin')->attempt($credentials)) {
             return redirect()->intended($this->redirectTo)->with('status', 'You are now logged in.');
         }
 

@@ -15,7 +15,6 @@
                                 <div class="card-body">
                                     <form method="POST" action="{{ route('sector-admin.login.submit') }}">
                                         @csrf
-
                                         <div class="form-group row">
                                             <label for="email"
                                                 class=" text-md-right">{{ __('E-Mail Address') }}</label>
