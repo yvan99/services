@@ -40,6 +40,8 @@ class CategoryController extends Controller
         return view('category.index', compact('categories'));
     }
 
+
+
     public function showServices(Category $category)
     {
         $category->load('services');
@@ -57,8 +59,9 @@ class CategoryController extends Controller
     public function viewServices()
     {
         $services = Service::with('category')->get();
+        $categories = Category::all();
 
-        return view('services.index', compact('services'));
+        return view('services.index', compact('services','categories'));
     }
 
     public function registerService(Request $request)
