@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CellSchedule extends Model
 {
     use HasFactory;
+    protected $table = 'cell_schedule';
     protected $fillable = ['cell_request_id', 'date', 'hour', 'title'];
 
     public function cellRequest()

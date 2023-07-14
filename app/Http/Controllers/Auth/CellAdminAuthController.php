@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Auth;
 class CellAdminAuthController extends Controller
 {
 
-    protected $redirectTo = '/cell-admin/dashboard';
-    protected $redirectToLogout = '/cell-admin/login';
+    protected $redirectTo = '/cell/dashboard';
+    protected $redirectToLogout = '/cell/login';
 
     public function __construct()
     {
@@ -18,7 +18,7 @@ class CellAdminAuthController extends Controller
 
     public function showLoginForm()
     {
-        return view('auth.cell-admin-login');
+        return view('celladmin.login');
     }
 
     protected function guard()
@@ -35,12 +35,22 @@ class CellAdminAuthController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        if (Auth::guard('cell-admin')->attempt($credentials)) {
+        if (Auth::guard('cell_admin')->attempt($credentials)) {
             return redirect()->intended($this->redirectTo)->with('status', 'You are now logged in.');
         }
 
         return redirect()->back()->withInput($request->only('email'))->withErrors([
             'email' => 'These credentials do not match our records.',
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('cell_admin')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect($this->redirectToLogout)->with('status', 'You are logged out');
     }
 }
