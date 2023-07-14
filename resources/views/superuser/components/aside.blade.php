@@ -78,7 +78,7 @@
                                     fill="currentColor" />
                             </svg>
                         </i>
-                        <span class="item-name">Service Categories</span>
+                        <span class="item-name">Categories List</span>
                     </a>
                 </li>
 
@@ -96,7 +96,7 @@
                                     fill="currentColor" />
                             </svg>
                         </i>
-                        <span class="item-name">Service List</span>
+                        <span class="item-name">Services List</span>
                     </a>
                 </li>
 
