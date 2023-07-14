@@ -42,7 +42,7 @@ class ScheduleController extends Controller
         return response()->json([
             'message' => 'Schedules created successfully',
             'schedules' => $schedules,
-            'messages'=>$message
+            'messages' => $message
         ]);
     }
 
@@ -78,7 +78,26 @@ class ScheduleController extends Controller
         return response()->json([
             'message' => 'Schedules created successfully',
             'schedules' => $schedules,
-            'messages'=>$message
+            'messages' => $message
         ]);
+    }
+
+    public function cellCalendar()
+    {
+        $cellSchedules = CellSchedule::all();
+
+        $events = [];
+        foreach ($cellSchedules as $cellSchedule) {
+            $event = [
+                'id' => $cellSchedule->id,
+                'title' => $cellSchedule->title,
+                'start' => $cellSchedule->date . 'T' . $cellSchedule->hour, // Format the date and time
+                'allDay' => false
+            ];
+            $events[] = $event;
+        }
+
+
+        return response()->json($events);
     }
 }

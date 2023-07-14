@@ -72,4 +72,6 @@ Route::middleware(['auth:cell_admin'])->prefix('cell')->group(function () {
     Route::get('/dashboard', [SectorAdminController::class, 'viewCellRequests']);
     Route::get('/logout', [CellAdminAuthController::class, 'logout']);
     Route::post('/cell-schedule', [ScheduleController::class, 'makeCellAppointment'])->name('cell-schedule.store');
+    Route::get('/timetablee', [ScheduleController::class, 'cellCalendar'])->name('cell-schedule.events');
+    Route::view('/timetable','schedule.cell');
 });
