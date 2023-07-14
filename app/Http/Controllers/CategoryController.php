@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Cell;
 use App\Models\Sector;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -51,5 +52,29 @@ class CategoryController extends Controller
             'sectors' => $sectors,
             'cells' => $cells
         ]);
+    }
+
+    public function viewServices()
+    {
+        $services = Service::with('category')->get();
+
+        return view('services.index', compact('services'));
+    }
+
+    public function registerService(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+
+        $service = new Service();
+        $service->name = $request->input('name');
+        $service->description = $request->input('description');
+        $service->category_id = $request->input('category_id');
+        $service->save();
+
+        return redirect()->back()->with('success', 'Service registered successfully!');
     }
 }
