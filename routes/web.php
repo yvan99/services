@@ -66,6 +66,8 @@ Route::middleware(['auth:sector_admin'])->prefix('sector')->group(function () {
     Route::get('/dashboard', [SectorAdminController::class, 'viewSectorRequests']);
     Route::get('/logout', [SectorAdminAuthController::class, 'logout']);
     Route::post('/sector-schedule', [ScheduleController::class, 'makeAppointment'])->name('sector-schedule.store');
+    Route::get('/timetablee', [ScheduleController::class, 'sectorCalendar'])->name('sector-schedule.events');
+    Route::view('/timetable','schedule.sector');
 });
 
 Route::middleware(['auth:cell_admin'])->prefix('cell')->group(function () {

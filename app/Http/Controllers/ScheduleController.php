@@ -100,4 +100,23 @@ class ScheduleController extends Controller
 
         return response()->json($events);
     }
+
+    public function sectorCalendar()
+    {
+        $sectorSchedules = SectorSchedule::all();
+
+        $events = [];
+        foreach ($sectorSchedules as $sectorSchedule) {
+            $event = [
+                'id' => $sectorSchedule->id,
+                'title' => $sectorSchedule->title,
+                'start' => $sectorSchedule->date . 'T' . $sectorSchedule->hour, 
+                'allDay' => false
+            ];
+            $events[] = $event;
+        }
+
+
+        return response()->json($events);
+    }
 }
