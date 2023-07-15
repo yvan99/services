@@ -13,11 +13,14 @@ class SectorRequestController extends Controller
 {
     public function viewRequests()
     {
-        $sectorRequests = SectorRequest::where('citizen_id',Auth::guard('citizen')->user()->id )->get();
-        $cellRequests = CellRequest::where('citizen_id', Auth::guard('citizen')->user()->id)->get();
-
-        return view('requests.show', compact('sectorRequests','cellRequests'));
+        $citizenId = Auth::guard('citizen')->user()->id;
+    
+        $sectorRequests = SectorRequest::with('sectorSchedule')->where('citizen_id', $citizenId)->get();
+        $cellRequests = CellRequest::with('cellSchedule')->where('citizen_id', $citizenId)->get();
+    
+        return view('requests.show', compact('sectorRequests', 'cellRequests'));
     }
+    
 
     public function store(Request $request)
     {

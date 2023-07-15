@@ -33,4 +33,10 @@ class SectorRequest extends Model
     {
         return $this->belongsTo(Sector::class);
     }
+
+    public function sectorSchedule()
+    {
+        return $this->hasOne(SectorSchedule::class, 'sector_request_id');
+    }
+
 }

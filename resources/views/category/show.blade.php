@@ -20,12 +20,12 @@
                             <div class="pxp-jobs-card-2-info">
                                 <a href="single-job-1.html"
                                     class="pxp-jobs-card-2-title text-capitalize">{{ $service->name }}</a>
-                             <div class="pxp-jobs-card-2-details">
+                                <div class="pxp-jobs-card-2-details">
                                     {{-- <a href="jobs-list-1.html" class="pxp-jobs-card-2-location">
                                         <span class="fa fa-globe"></span>Los Angeles, CA
                                     </a> --}}
-                                    <div class="pxp-jobs-card-2-type">{{$service->description}}</div>
-                                </div> 
+                                    <div class="pxp-jobs-card-2-type">{{ $service->description }}</div>
+                                </div>
                             </div>
                         </div>
                         <div class="pxp-jobs-card-2-bottom">
@@ -33,22 +33,22 @@
                                 <div class="pxp-jobs-card-2-category-label">
 
                                     @if ($service->level === 'cell')
-
-                                    <b class="text-success">Cell Level</b>
-                                        
+                                        <b class="text-success">Cell Level</b>
                                     @else
-                                    <b class="text-warning">Sector Level</b>
-                                        
+                                        <b class="text-warning">Sector Level</b>
                                     @endif
-                                   
-                                
+
+
                                 </div>
                             </a>
                             <div class="pxp-jobs-card-2-bottom-right">
-                                <a href="#" class="pxp-jobs-card-2-company btn btn-primary text-white"
-                                    data-bs-toggle="modal" data-bs-target="#requestServiceModal"
-                                    data-service-id="{{ $service->id }}"
-                                    data-service-type="{{ $service->level }}">Request Service </a>
+
+                                @auth('citizen')
+                                    <a href="#" class="pxp-jobs-card-2-company btn btn-primary text-white"
+                                        data-bs-toggle="modal" data-bs-target="#requestServiceModal"
+                                        data-service-id="{{ $service->id }}"
+                                        data-service-type="{{ $service->level }}">Request Service</a>
+                                @endauth
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                     </div>
                     <div class="form-group mt-4">
                         <label class="mb-2 text-muted">Choose Cell</label>
-                       
+
                         <select name="cell_id" id="cellSelect" class="form-control form-select" required>
 
                         </select>
@@ -171,28 +171,27 @@
 </script>
 
 <script>
-   $(document).ready(function() {
-    $('#sectorSelect').change(function() {
-        let sectorId = $(this).val();
-        $('#cellSelect').empty();
+    $(document).ready(function() {
+        $('#sectorSelect').change(function() {
+            let sectorId = $(this).val();
+            $('#cellSelect').empty();
 
-        $.ajax({
-            url: '/cells/' + sectorId,
-            type: 'GET',
-            dataType: 'json',
-            success: function(response) {
-                let selectInput = $('#cellSelect');
-                response.forEach(function(cell) {
-                    let option = '<option value="' + cell.id + '">' + cell.name + '</option>';
-                    selectInput.append(option);
-                });
-            },
-            error: function(error) {
-                console.error(error);
-            }
+            $.ajax({
+                url: '/cells/' + sectorId,
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    let selectInput = $('#cellSelect');
+                    response.forEach(function(cell) {
+                        let option = '<option value="' + cell.id + '">' + cell
+                            .name + '</option>';
+                        selectInput.append(option);
+                    });
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
         });
     });
-});
-
-
 </script>
