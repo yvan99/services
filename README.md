@@ -27,3 +27,9 @@ The Service Portal App is a web application that allows citizens to request serv
 - MySQL: Database management system
 - JavaScript: Frontend scripting language
 - HTML/CSS: Markup and styling
+
+## Contributing
+Contributions to the Service Portal App are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+
+## License
+This project is licensed under the [MIT License](LICENSE).
