@@ -25,3 +25,5 @@ The Service Portal App is a web application that allows citizens to request serv
 ## Technologies Used
 - Laravel: Backend framework for PHP
 - MySQL: Database management system
+- JavaScript: Frontend scripting language
+- HTML/CSS: Markup and styling
