@@ -13,3 +13,11 @@ The Service Portal App is a web application that allows citizens to request serv
 6. Set up your database connection in the `.env` file.
 7. Run database migrations using `php artisan migrate`.
 8. Optionally, run `php artisan db:seed` to seed the database with sample data.
+
+## Usage
+1. Start the development server by running `php artisan serve`.
+2. Open your web browser and visit `http://localhost:8000` to access the app.
+3. Register a new account or log in as a citizen.
+4. Explore the available services and request a service by clicking the "Request Service" button.
+5. View your service requests and their status in the "My Requests" section.
+6. Sector admins and cell admins can log in to manage and schedule service requests.
