@@ -21,3 +21,7 @@ The Service Portal App is a web application that allows citizens to request serv
 4. Explore the available services and request a service by clicking the "Request Service" button.
 5. View your service requests and their status in the "My Requests" section.
 6. Sector admins and cell admins can log in to manage and schedule service requests.
+
+## Technologies Used
+- Laravel: Backend framework for PHP
+- MySQL: Database management system
