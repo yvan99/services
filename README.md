@@ -11,3 +11,5 @@ The Service Portal App is a web application that allows citizens to request serv
 4. Create a copy of the `.env.example` file and rename it to `.env`.
 5. Generate an application key by running `php artisan key:generate`.
 6. Set up your database connection in the `.env` file.
+7. Run database migrations using `php artisan migrate`.
+8. Optionally, run `php artisan db:seed` to seed the database with sample data.
