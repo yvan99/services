@@ -33,4 +33,10 @@ class CellRequest extends Model
     {
         return $this->belongsTo(Cell::class);
     }
+
+    public function cellSchedule()
+    {
+        return $this->hasOne(CellSchedule::class, 'cell_request_id');
+    }
+
 }

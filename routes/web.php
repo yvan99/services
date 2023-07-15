@@ -16,6 +16,7 @@ Route::get('categories/{category}', [CategoryController::class, 'showServices'])
 Route::post('/cell/requests', [CellRequestController::class, 'store'])->name('cell.requests.store');
 Route::post('/sector/requests', [SectorRequestController::class, 'store'])->name('sector.requests.store');
 Route::get('/cells/{sector}', [CellRequestController::class, 'getCellsBySector'])->name('cells.bySector');
+Route::post('/goto',[CategoryController::class, 'getGoto'])->name('goto');
 
 // Superuser Authentication Routes
 Route::prefix('admin')->group(function () {
@@ -66,10 +67,14 @@ Route::middleware(['auth:sector_admin'])->prefix('sector')->group(function () {
     Route::get('/dashboard', [SectorAdminController::class, 'viewSectorRequests']);
     Route::get('/logout', [SectorAdminAuthController::class, 'logout']);
     Route::post('/sector-schedule', [ScheduleController::class, 'makeAppointment'])->name('sector-schedule.store');
+    Route::get('/timetablee', [ScheduleController::class, 'sectorCalendar'])->name('sector-schedule.events');
+    Route::view('/timetable','schedule.sector');
 });
 
 Route::middleware(['auth:cell_admin'])->prefix('cell')->group(function () {
     Route::get('/dashboard', [SectorAdminController::class, 'viewCellRequests']);
     Route::get('/logout', [CellAdminAuthController::class, 'logout']);
     Route::post('/cell-schedule', [ScheduleController::class, 'makeCellAppointment'])->name('cell-schedule.store');
+    Route::get('/timetablee', [ScheduleController::class, 'cellCalendar'])->name('cell-schedule.events');
+    Route::view('/timetable','schedule.cell');
 });

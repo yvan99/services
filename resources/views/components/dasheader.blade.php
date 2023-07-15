@@ -5,8 +5,7 @@
             <!--Logo start-->
             <div class="logo-main">
                 <div class="logo-normal">
-                    <svg class="text-primary icon-30" viewBox="0 0 32 32" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
+                    <svg class="text-primary icon-30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M7.25333 2H22.0444L29.7244 15.2103L22.0444 28.1333H7.25333L0 15.2103L7.25333 2ZM11.2356 9.32316H18.0622L21.3334 15.2103L18.0622 20.9539H11.2356L8.10669 15.2103L11.2356 9.32316Z"
                             fill="currentColor" />
@@ -40,13 +39,13 @@
             </div>
             <div class="offcanvas offcanvas-end shadow-none iq-product-menu-responsive" tabindex="-1"
                 id="offcanvasBottom">
-        
+
             </div>
         </div>
         <div class="d-flex align-items-center">
             <button id="navbar-toggle" class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon">
                     <span class="navbar-toggler-bar bar1 mt-1"></span>
                     <span class="navbar-toggler-bar bar2"></span>
@@ -57,9 +56,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="mb-2 navbar-nav ms-auto align-items-center navbar-list mb-lg-0 ">
                 <li class="nav-item dropdown">
-                    <a class="py-0 nav-link d-flex align-items-center ps-3" href="#"
-                        id="profile-setting" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{asset('home/images/favicon.png')}}" alt="User-Profile"
+                    <a class="py-0 nav-link d-flex align-items-center ps-3" href="#" id="profile-setting"
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{ asset('home/images/favicon.png') }}" alt="User-Profile"
                             class="img-fluid avatar avatar-50 avatar-rounded" loading="lazy">
                         <div class="caption ms-3 d-none d-md-block ">
                             <h6 class="mb-0 caption-title text-capitalize">{{ Auth::user()->name }}</h6>
@@ -74,7 +73,15 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li> --}}
-                        <li><a class="dropdown-item" href="/{{ Auth::getDefaultDriver() }}/logout">Logout</a></li>
+                        <li>
+                            @if (Auth::getDefaultDriver() === 'superuser')
+                                <a class="dropdown-item" href="/admin/logout">Logout</a>
+                            @elseif(Auth::getDefaultDriver() === 'cell_admin')
+                                <a class="dropdown-item" href="/cell/logout">Logout</a>
+                            @else
+                                <a class="dropdown-item" href="/sector/logout">Logout</a>
+                            @endif
+                        </li>
                     </ul>
                 </li>
             </ul>

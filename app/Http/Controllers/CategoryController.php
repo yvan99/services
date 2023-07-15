@@ -18,6 +18,10 @@ class CategoryController extends Controller
         return view('welcome', compact('totalCategories', 'categories'));
     }
 
+    public function getGoto(Request $request){
+        return redirect('/categories/'.$request->category);
+    }
+
     public function registerCategory(Request $request)
     {
         $request->validate([
