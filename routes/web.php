@@ -16,6 +16,7 @@ Route::get('categories/{category}', [CategoryController::class, 'showServices'])
 Route::post('/cell/requests', [CellRequestController::class, 'store'])->name('cell.requests.store');
 Route::post('/sector/requests', [SectorRequestController::class, 'store'])->name('sector.requests.store');
 Route::get('/cells/{sector}', [CellRequestController::class, 'getCellsBySector'])->name('cells.bySector');
+Route::post('/goto',[CategoryController::class, 'getGoto'])->name('goto');
 
 // Superuser Authentication Routes
 Route::prefix('admin')->group(function () {
