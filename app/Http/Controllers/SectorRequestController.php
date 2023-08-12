@@ -40,9 +40,8 @@ class SectorRequestController extends Controller
             ->where('preferred_hour', $validatedData['preferred_hour'])
             ->count();
 
-        // dd($existingRequestsCount);
 
-        if ($existingRequestsCount >= 1) {
+        if ($existingRequestsCount >= getenv("MAX_USERS_PER_REQUEST")) {
             // Generate alternative hours for suggestions (example: +/- 1 hour)
             $suggestedHours = [];
             $originalHour = $validatedData['preferred_hour'];
