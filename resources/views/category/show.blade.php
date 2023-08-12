@@ -10,16 +10,22 @@
 
 <section class="mt-3">
     <div class="pxp-container">
+
+        @if(session('responseMessage'))
+        <div class="alert alert-warning">
+            {!! session('responseMessage') !!}
+        </div>
+    @endif
+
         <div class="row mt-3 mt-md-4 pxp-animate-in pxp-animate-in-top pxp-in">
             @foreach ($services as $service)
                 <div class="col-xl-6 pxp-jobs-card-2-container">
                     <div class="pxp-jobs-card-2 pxp-has-border">
                         <div class="pxp-jobs-card-2-top">
-                            <a href="single-company-1.html" class="pxp-jobs-card-2-company-logo"
+                            <a href="" class="pxp-jobs-card-2-company-logo"
                                 style="background-image: url(../home/images/company-logo-5.png);"></a>
                             <div class="pxp-jobs-card-2-info">
-                                <a href="single-job-1.html"
-                                    class="pxp-jobs-card-2-title text-capitalize">{{ $service->name }}</a>
+                                <a href="" class="pxp-jobs-card-2-title text-capitalize">{{ $service->name }}</a>
                                 <div class="pxp-jobs-card-2-details">
                                     {{-- <a href="jobs-list-1.html" class="pxp-jobs-card-2-location">
                                         <span class="fa fa-globe"></span>Los Angeles, CA
