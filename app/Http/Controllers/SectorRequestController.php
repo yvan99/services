@@ -34,7 +34,6 @@ class SectorRequestController extends Controller
             'description' => 'nullable',
         ]);
 
-        // Check if there are 5 requests for the same day and hour
         $existingRequestsCount = SectorRequest::where('sector_id', $validatedData['sector_id'])
             ->where('preferred_date', $validatedData['preferred_date'])
             ->where('preferred_hour', $validatedData['preferred_hour'])
@@ -81,48 +80,4 @@ class SectorRequestController extends Controller
         return back()->with('status', 'Service Request received successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
