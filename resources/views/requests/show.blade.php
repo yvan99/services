@@ -58,7 +58,7 @@
                                                 {{ $request->sectorSchedule->hour }}
                                             @endif
                                         </td>
-                                        
+
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -67,7 +67,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="card mt-4">
             <div class="card-body">
                 <div class="mt-4 mt-lg-5">
@@ -98,7 +98,7 @@
                                         <td>{{ $request->cell->name }}</td>
                                         <td>{{ $request->preferred_date }}</td>
                                         <td>{{ $request->preferred_hour }}</td>
-          
+
                                         <td>
                                             @if ($request->status == 'pending')
                                                 <button class="btn btn-warning btn-sm">Pending</button>
@@ -116,7 +116,7 @@
                                                 {{ $request->cellSchedule->hour }}
                                             @endif
                                         </td>
-                                        
+
                                     </tr>
                                 @endforeach
                             </tbody>
